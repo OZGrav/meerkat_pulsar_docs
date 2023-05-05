@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/software_installation/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Software Installation - Pulsar Processing: MeerKAT documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Software Installation";
+        var mkdocs_page_input_path = "software_installation.md";
+        var mkdocs_page_url = "/software_installation/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Pulsar Processing: MeerKAT documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ozstar/">OzStar</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Software Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#containers">Containers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#installing-in-a-debian-os-easy">Installing in a debian OS (easy)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#install-manually-hard">Install manually (hard)</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#fftw">FFTW</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#psrfits_utils">psrfits_utils</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#psrxml">psrxml</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#calceph">calceph</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#cfitsio">cfitsio</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#splinter">splinter</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#psrdada">psrdada</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pgplot">pgplot</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#psrcat">psrcat</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tempo">tempo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tempo2">tempo2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#presto">presto</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#psrchive">psrchive</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dspsr">dspsr</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sigproc">sigproc</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../command_examples/">Command examples</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Pulsar Processing: MeerKAT documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Software Installation</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="software-installation">Software installation</h1>
+<p>How to install common pulsar software and some of the common problems you may encounter.</p>
+<h2 id="containers">Containers</h2>
+<p>An easy and quick was to install software is to use a container.
+Have you ever been debugging software with someone and they say "well it works on my machine",
+containers tries reduce such problems by enabling you to virtually ship and entire computer
+(operating system and install software dependencies) to another user.
+These containers can be downloaded and run on your machine so the software
+is much more likely to behave in the same way.</p>
+<p>The two most common container software packages are <a href="https://docs.docker.com/">Docker</a> (for most computers)
+and <a href="http://apptainer.org/">Singularity/Apptainer</a> (for use on supercomputers).
+If you are not doing large scale processing (hundreds of jobs) then a container may be all you need.
+The following are a list of pulsar software docker containers that may suit your needs</p>
+<ul>
+<li><a href="https://hub.docker.com/repository/docker/cirapulsarsandtransients/psr-analysis/general">psr-analysis</a> (<a href="https://github.com/CIRA-Pulsars-and-Transients-Group/psrchive_docker/blob/main/Dockerfile.psr-analysis">repo</a>) (Tempo, Tempo2, PINT, psrcat, PSRCHIVE, DSPSR and PulsePortraiture)</li>
+<li><a href="https://hub.docker.com/repository/docker/cirapulsarsandtransients/psr-search/general">psr-search</a> (<a href="https://github.com/CIRA-Pulsars-and-Transients-Group/psrchive_docker/blob/main/Dockerfile.psr-search">repo</a>) (Tempo, psrcat, PRESTO, and riptide (FFA))</li>
+<li><a href="https://hub.docker.com/repository/docker/cirapulsarsandtransients/presto/general">presto</a> (<a href="https://github.com/scottransom/presto/blob/master/Dockerfile">repo</a>)</li>
+</ul>
+<h2 id="dependencies">Dependencies</h2>
+<p>You will need to install the following packages with a package manager:</p>
+<pre><code class="language-bash">libtool
+libfftw3-3
+libfftw3-dev
+libcfitsio8
+libcfitsio-dev
+wget
+libpng-dev
+libgd-dev
+autoconf
+automake
+libtool
+m4
+git
+gsl-bin
+libgsl-dev
+flex
+bison
+fort77
+libglib2.0-dev
+gnuplot
+python-dev
+python-numpy
+python-scipy
+python-matplotlib
+python-setuptools
+python-sympy
+python-nose
+swig
+libltdl-dev
+libltdl7
+cmake
+libblas3
+liblapack3
+libblas-dev
+liblapack-dev
+libxext-dev
+libx11-dev
+libopenmpi-dev
+openmpi-bin
+libhdf5-openmpi-dev
+mpich
+libmpich-dev
+libhdf5-mpich-dev
+tcsh
+pgplot5
+imagemagick
+bc
+latex2html
+gfortran
+</code></pre>
+<p>We will assume you are going to install this into a directory <code>ASTROSOFT</code> where you will run most of
+the following commands and install the software to.
+Define this location and other environmental variables by adding the following to your <code>.bashrc</code> (based on <a href="https://www.atnf.csiro.au/people/Lawrence.Toomey/pulsarref/pulsar-software-install-ubuntu-64bit.html">Lawrence Tommey's documentation</a>)</p>
+<pre><code class="language-bash"># Path to the pulsar software installation directory e.g:
+export ASTROSOFT=/home/${USER}/pulsar_software
+
+# OSTYPE
+export OSTYPE=linux
+
+# PSRCAT
+export PSRCAT_RUNDIR=$ASTROSOFT/psrcat_tar
+export PSRCAT_FILE=$ASTROSOFT/psrcat_tar/psrcat.db
+
+# Tempo
+export TEMPO=$ASTROSOFT/tempo
+
+# Tempo2
+export TEMPO2=$ASTROSOFT/tempo2/T2runtime
+
+# PRESTO
+export PRESTO=$ASTROSOFT/presto
+
+# MULTINEST
+export MULTINEST_DIR=$ASTROSOFT/TempoNest/MultiNest
+
+# LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/lib:/usr/lib/x86_64-linux-gnu:$PGPLOT_DIR:$ASTROSOFT/lib:$PRESTO/lib:$PRESTO/lib64:$MULTINEST_DIR
+
+# PATH
+# Some Presto executables match sigproc executables so keep separate -
+# all other executables are found in $ASTROSOFT/bin
+export PATH=$PATH:$ASTROSOFT/bin:$PRESTO/bin:$PGPLOT_DIR
+
+# PYTHON PATH eg.
+export PYTHONPATH=$PRESTO/lib/python:$PRESTO/lib64/python:/usr/lib/python2.7/site-packages/:/usr/lib64/python2.7/site-packages:$ASTROSOFT/lib/python2.7/site-packages
+</code></pre>
+<h3 id="installing-in-a-debian-os-easy">Installing in a debian OS (easy)</h3>
+<p>If you would like to install this software on your personal computer (not a supercomputer)
+the following command will install the required dependencies on linux debian operating systems (Ubuntu, Mint, etc.).</p>
+<pre><code class="language-bash">sudo apt install libtool libfftw3-3 libfftw3-dev libcfitsio8 libcfitsio-dev wget libpng-dev libgd-dev autoconf automake libtool m4 git gsl-bin libgsl-dev flex bison fort77 libglib2.0-dev gnuplot python-dev python-numpy python-scipy python-matplotlib python-setuptools python-sympy python-nose swig libltdl-dev libltdl7 cmake libblas3 liblapack3 libblas-dev liblapack-dev libxext-dev libx11-dev libopenmpi-dev openmpi-bin libhdf5-openmpi-dev mpich libmpich-dev libhdf5-mpich-dev tcsh pgplot5 imagemagick bc latex2html gfortran
+</code></pre>
+<h3 id="install-manually-hard">Install manually (hard)</h3>
+<p>If you would like to install these dependencies manually
+(because you are installing it on supercomputer perhaps)
+then the following sections will show you how install each dependency manually.</p>
+<h4 id="fftw">FFTW</h4>
+<pre><code class="language-bash">autoreconf --verbose --install --symlink --force
+./configure --enable-shared --enable-float --enable-sse --disable-dependency-tracking [--prefix=${install_dir}]
+make clean
+make
+make install
+</code></pre>
+<h4 id="psrfits_utils">psrfits_utils</h4>
+<h4 id="psrxml">psrxml</h4>
+<h4 id="calceph">calceph</h4>
+<h4 id="cfitsio">cfitsio</h4>
+<h4 id="splinter">splinter</h4>
+<h4 id="psrdada">psrdada</h4>
+<pre><code>git clone ssh://ajameson@git.code.sf.net/p/psrdada/code psrdada&quot;
+./bootstrap
+./configure --prefix=${install_dir} --with-cuda-dir=$EBROOTCUDA --with-sofa-dir=$PSRHOME_SOFA_PATH --with-fftw3-dir=$PSRHOME_FFTW_SP_PATH --enable-shared
+# make clean
+make
+make install
+make clean
+</code></pre>
+<p>You may see an error that looks like this:</p>
+<pre><code>... multiple definition of ... first defined here
+collect2: error: ld returned 1 exit status
+</code></pre>
+<p>This is due to new compilers (gcc version &gt;9) not liking the old variable definition style.
+You can make it ignore these issues by adding a compiler option like so:</p>
+<pre><code class="language-bash">make CFLAGS=-fcommon
+</code></pre>
+<h2 id="pgplot">pgplot</h2>
+<h2 id="psrcat">psrcat</h2>
+<pre><code class="language-bash">wget https://www.atnf.csiro.au/research/pulsar/psrcat/downloads/psrcat_pkg.tar.gz
+gunzip -c psrcat_pkg.tar.gz | tar xvf -
+cd psrcat_tar
+source makeit
+# Move the psrcat executable to the path:
+cp psrcat $ASTROSOFT/bin
+</code></pre>
+<p>You may see an error that looks like this:</p>
+<pre><code>... multiple definition of ... first defined here
+collect2: error: ld returned 1 exit status
+</code></pre>
+<p>This is due to new compilers (gcc version &gt;9) not liking the old variable definition style.
+You can make it ignore these issues by adding a compiler option like so:</p>
+<pre><code class="language-bash">sed -i 's&amp;/usr/bin/gcc&amp;/usr/bin/gcc -fcommon&amp;g' makeit
+</code></pre>
+<p>Then recompile (run <code>source makeit</code> again)</p>
+<h2 id="tempo">tempo</h2>
+<h2 id="tempo2">tempo2</h2>
+<pre><code>git clone https://bitbucket.org/psrsoft/tempo2.git
+cd tempo2
+./bootstrap
+./configure --prefix=${ASTROSOFT} --with-calceph=${PSRHOME_CALCEPH_PATH}
+make
+make plugins
+make install
+make plugins-install
+make clean
+</code></pre>
+<h2 id="presto">presto</h2>
+<h2 id="psrchive">psrchive</h2>
+<pre><code>git clone git://git.code.sf.net/p/psrchive/code psrchive
+cd psrchive
+./bootstrap
+./configure --prefix=$ASTROSOFT --with-psrxml-dir=${PSRHOME_PSRXML_PATH} --enable-shared
+make
+make install
+make clean
+</code></pre>
+<p>If you see an error that looks similar to:</p>
+<pre><code> 1063 |         CALL REGFA1(HEF,HMF2,XE2H,NMF2,0.001,NMF1,XE2,SCHALT,HMF1)
+      |                                             2
+......
+ 1311 |       CALL REGFA1(130.0,500.0,TI13,TI50,0.01,TI1,TEDER,SCHALT,HS)
+      |                                             1
+Error: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
+</code></pre>
+<p>This is due to a type missmatch that modern gfortran compilers don't like, to ignore it run</p>
+<pre><code>export FFLAGS=&quot;-fallow-argument-mismatch&quot;
+</code></pre>
+<p>Then recompile (run the <code>make</code> commands again)</p>
+<h2 id="dspsr">dspsr</h2>
+<pre><code>git clone git://git.code.sf.net/p/dspsr/code dspsr
+cd dspsr
+./bootstrap
+./configure --prefix=${install_dir} --with-psrxml-dir=${PSRHOME_PSRXML_PATH} &gt;&amp; ${build_dir}/build.log
+make
+make install
+make clean
+</code></pre>
+<p>If you see errors like this:</p>
+<pre><code>error: call to non-'constexpr' function 'long int sysconf(int)'
+</code></pre>
+<p>and</p>
+<pre><code>error: size of array 'altStackMem' is not an integral constant-expression
+</code></pre>
+<p>This is because it using a version of <code>catch2</code> with a bug in it that can be fixed by running</p>
+<pre><code>sed -i 's/constexpr static std::size_t sigStackSize = 32768 &gt;= MINSIGSTKSZ ? 32768 : MINSIGSTKSZ;/constexpr static std::size_t sigStackSize = 32768;/' test/catch.hpp
+</code></pre>
+<p>then recompiling (running the <code>make</code> commands again)</p>
+<h2 id="sigproc">sigproc</h2>
+<pre><code>git clone https://github.com/SixByNine/sigproc.git
+cd sigproc
+./bootstrap
+./configure --prefix=${install_dir} --with-psrxml-dir=${PSRHOME_PSRXML_PATH}
+make
+make install
+make clean
+</code></pre>
+<p>You may get an error like this</p>
+<pre><code>Error: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
+</code></pre>
+<p>You can make the compiler ignore this with the option <code>-fallow-argument-mismatch</code> by running make again like so</p>
+<pre><code>make FFLAGS=-fallow-argument-mismatch
+
+
+If you get an error like this
+</code></pre>
+<p>... multiple definition of ... first defined here
+collect2: error: ld returned 1 exit status</p>
+<pre><code>it is the old gcc error again. Fix it like this
+</code></pre>
+<p>make CFLAGS=-fcommon</p>
+<pre><code>
+If you get an error like this
+</code></pre>
+<p>inject_pulsar.c:548:35: error: 'nprof' not specified in enclosing 'parallel'
+  548 |                 for(unsigned i=0; i &lt; nprof;i++){
+      |                                   ^
+inject_pulsar.c:547:9: note: enclosing 'parallel'
+  547 | #pragma omp parallel for  default(none) shared(subpulse_map)
+      |         ^~~
+<code>``
+This is because some of the variables in the parallel for loop
+were not explictly labeled as private or shared.
+The easiest way to fix this is to turn off</code>default(none)` like so</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ozstar/" class="btn btn-neutral float-left" title="OzStar"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../command_examples/" class="btn btn-neutral float-right" title="Command examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ozstar/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../command_examples/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
