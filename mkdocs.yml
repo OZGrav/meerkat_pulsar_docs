@@ -1,0 +1,8 @@
+site_name: "Pulsar Processing: MeerKAT documentation"
+site_url: https://example.com/
+theme: readthedocs
+nav:
+    - Home: index.md
+    - OzStar: ozstar.md
+    - Software Installation: software_installation.md
+    - Command examples: command_examples.md
