@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "meerkat-pulsar-docs"
+version = "0.1.0"
+description = "Documentation on how to process MeerKat data on the OzSTAR supercomputer and how to install and use common pulsar software."
+authors = ["NickSwainston <nickaswainston@gmail.com>"]
+readme = "README.md"
+packages = [{include = "meerkat_pulsar_docs"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mkdocs = "^1.4.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
