@@ -50,6 +50,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#getting-an-account">Getting an account</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#loading-pulsar-software">Loading pulsar software</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#loading-pulsar-software-with-tsch">Loading pulsar software with tsch</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -102,14 +106,16 @@ The following projects relate to MeerKat pulsar astronomy:</p>
 <p>If you prefer the <code>bash</code> shell (the default) then add the following to your <code>~/.bashrc</code> with your favorite test editor:</p>
 <pre><code class="language-bash">source /fred/oz002/psrhome/scripts/psrhome.sh
 </code></pre>
-<p>or if you prefer the <code>tsch</code> shell (C shell) then add the following to your <code>~/.cshrc</code> with your favorite test editor:</p>
-<pre><code class="language-bash">source /fred/oz002/psrhome/scripts/psrhome.csh
-</code></pre>
 <p>Then to load these changes run</p>
 <pre><code class="language-bash">source ~/.bashrc
 </code></pre>
 <p>to load these changes (this will be done by default when you log in)</p>
 <p>The common pulsar software is now loaded and ready for you to use.</p>
+<h3 id="loading-pulsar-software-with-tsch">Loading pulsar software with tsch</h3>
+<p>If you prefer the <code>tsch</code> shell (C shell) then add the following to your <code>~/.cshrc</code> with your favorite test editor:</p>
+<pre><code class="language-bash">source /fred/oz002/psrhome/scripts/psrhome.csh
+</code></pre>
+<p>You can change your shell with <code>changeShell</code> command (see the <a href="https://supercomputing.swin.edu.au/docs/1-getting_started/FAQ.html?highlight=shell#how-can-i-change-my-login-shell">docs</a>)</p>
               
             </div>
           </div><footer>

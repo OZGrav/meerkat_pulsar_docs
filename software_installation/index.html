@@ -53,6 +53,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#containers">Containers</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#general-compiling-tips">General compiling tips</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#installing-in-a-debian-os-easy">Installing in a debian OS (easy)</a>
@@ -73,11 +75,11 @@
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#psrdada">psrdada</a>
     </li>
-        </ul>
+    <li class="toctree-l4"><a class="reference internal" href="#pgplot">pgplot</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pgplot">pgplot</a>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#psrcat">psrcat</a>
     </li>
@@ -85,13 +87,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#tempo2">tempo2</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#presto">presto</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#psrchive">psrchive</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#dspsr">dspsr</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#sigproc">sigproc</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#presto">presto</a>
     </li>
     </ul>
                 </li>
@@ -141,57 +143,91 @@ The following are a list of pulsar software docker containers that may suit your
 <li><a href="https://hub.docker.com/repository/docker/cirapulsarsandtransients/psr-search/general">psr-search</a> (<a href="https://github.com/CIRA-Pulsars-and-Transients-Group/psrchive_docker/blob/main/Dockerfile.psr-search">repo</a>) (Tempo, psrcat, PRESTO, and riptide (FFA))</li>
 <li><a href="https://hub.docker.com/repository/docker/cirapulsarsandtransients/presto/general">presto</a> (<a href="https://github.com/scottransom/presto/blob/master/Dockerfile">repo</a>)</li>
 </ul>
+<h2 id="general-compiling-tips">General compiling tips</h2>
+<p>Compilers output a huge amount of text and it can be hard to understand.
+If you're not even sure if it ran successfully, one thing you can do is check the exitcode with</p>
+<pre><code>echo $?
+</code></pre>
+<p>If it outputs <code>0</code> then it compiled successfully.
+All non-zero numbers are errorcodes which try to help describe what went wrong and mean it is time to debug.
+Some programs also come with tests so you can run</p>
+<pre><code>make test
+</code></pre>
+<p>and if the tests pass you can be even more confident that the software is install correctly.</p>
+<p>As you start debugging the compilation, it can be easier to pipe the output to a log file
+by adding <code>&gt;&gt;&amp; build.log</code> to the end of the command like so</p>
+<pre><code>make &gt;&gt;&amp; build.log
+</code></pre>
+<p>You can then search for <code>error:</code> to more easily find what the issue is.
+You should also check the outputs of <code>./bootstrap</code> and <code>./configure</code> as their main job is to find dependencies.
+So if the compiler is complaining about not finding software check the <code>./bootstrap</code> and <code>./configure</code> output.</p>
+<p>You should never copy the executable files (outputs of the compilers that you use to run code) or configure scripts from other computers/systems.
+These will have been compiled on a different systems so they will be built for different infrastructure and dependencies so they likely will not run on your system.</p>
+<p>To get software to compile you often have to add different compiler flags/options so they work for your dependencies and compiler versions.
+You can add these compiler flags using <code>CFLAGS=&lt;C flags here&gt;</code> for the <code>gcc</code> compiler and <code>FFLAGS=&lt;fortran flags here&gt;</code> for the <code>gfortran</code> compiler.
+If the software has a <code>configure</code> script it is best to add the flags to the <code>./configure</code> command
+as they will be appended to the other flags the <code>configure</code> script determines the compiler requires.
+So do this:</p>
+<pre><code class="language-bash">./configure CFLAGS=&lt;C flags here&gt; FFLAGS=&lt;fortran flags here&gt;
+make clean
+make
+</code></pre>
+<p>not this:</p>
+<pre><code class="language-bash"># BAD! DO NOT DO THIS
+./configure
+make clean
+make CFLAGS=&lt;C flags here&gt; FFLAGS=&lt;fortran flags here&gt;
+</code></pre>
+<p>as adding <code>CFLAGS</code> or <code>FFLAGS</code> tot he <code>make</code> command may overwrite other compiler flags.</p>
 <h2 id="dependencies">Dependencies</h2>
 <p>You will need to install the following packages with a package manager:</p>
-<pre><code class="language-bash">libtool
-libfftw3-3
-libfftw3-dev
-libcfitsio8
-libcfitsio-dev
-wget
-libpng-dev
-libgd-dev
+<pre><code class="language-bash">build-essential
 autoconf
+autotools-dev
 automake
+autogen
 libtool
-m4
+pkg-config
+cmake
+csh
+g++
+gcc
+gfortran
+wget
 git
+expect
+libcfitsio-dev
+hwloc
+perl
+pcre2-utils
+libpcre2-dev
+pgplot5
+python3
+python3-dev
+python3-testresources
+python3-pip
+python3-setuptools
+python3-tk
+libfftw3-3
+libfftw3-bin
+libfftw3-dev
+libfftw3-single3
+libx11-dev
+libpcre3
+libpcre3-dev
+libpng-dev
+libpnglite-dev
+libhdf5-dev
+libhdf5-serial-dev
+libxml2
+libxml2-dev
+libltdl-dev
 gsl-bin
 libgsl-dev
-flex
-bison
-fort77
-libglib2.0-dev
-gnuplot
-python-dev
-python-numpy
-python-scipy
-python-matplotlib
-python-setuptools
-python-sympy
-python-nose
-swig
-libltdl-dev
-libltdl7
-cmake
-libblas3
-liblapack3
 libblas-dev
 liblapack-dev
-libxext-dev
-libx11-dev
-libopenmpi-dev
-openmpi-bin
-libhdf5-openmpi-dev
-mpich
-libmpich-dev
-libhdf5-mpich-dev
-tcsh
-pgplot5
-imagemagick
-bc
-latex2html
-gfortran
+libglib2.0-dev
+xorg
 </code></pre>
 <p>We will assume you are going to install this into a directory <code>ASTROSOFT</code> where you will run most of
 the following commands and install the software to.
@@ -201,6 +237,9 @@ export ASTROSOFT=/home/${USER}/pulsar_software
 
 # OSTYPE
 export OSTYPE=linux
+
+# PGPLOT this assumes you install pgplot5 using apt
+export PGPLOT_DIR=/usr/lib/pgplot5
 
 # PSRCAT
 export PSRCAT_RUNDIR=$ASTROSOFT/psrcat_tar
@@ -219,7 +258,7 @@ export PRESTO=$ASTROSOFT/presto
 export MULTINEST_DIR=$ASTROSOFT/TempoNest/MultiNest
 
 # LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/usr/lib:/usr/lib/x86_64-linux-gnu:$PGPLOT_DIR:$ASTROSOFT/lib:$PRESTO/lib:$PRESTO/lib64:$MULTINEST_DIR
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/lib/x86_64-linux-gnu:$PGPLOT_DIR:$ASTROSOFT/lib:$PRESTO/lib:$PRESTO/lib64:$MULTINEST_DIR
 
 # PATH
 # Some Presto executables match sigproc executables so keep separate -
@@ -227,12 +266,14 @@ export LD_LIBRARY_PATH=/usr/lib:/usr/lib/x86_64-linux-gnu:$PGPLOT_DIR:$ASTROSOFT
 export PATH=$PATH:$ASTROSOFT/bin:$PRESTO/bin:$PGPLOT_DIR
 
 # PYTHON PATH eg.
-export PYTHONPATH=$PRESTO/lib/python:$PRESTO/lib64/python:/usr/lib/python2.7/site-packages/:/usr/lib64/python2.7/site-packages:$ASTROSOFT/lib/python2.7/site-packages
+export PYTHONPATH=$PYTHONPATH:$PRESTO/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages/:/usr/lib64/python3.10/site-packages:$ASTROSOFT/lib/python3.10/site-packages
 </code></pre>
+<p>You may have to change the python version in the <code>export PYTHONPATH</code> command.
+For example if you use python version 3.9.6 (check with <code>python -V</code>) then change <code>python3.10</code> to <code>python3.9</code></p>
 <h3 id="installing-in-a-debian-os-easy">Installing in a debian OS (easy)</h3>
 <p>If you would like to install this software on your personal computer (not a supercomputer)
 the following command will install the required dependencies on linux debian operating systems (Ubuntu, Mint, etc.).</p>
-<pre><code class="language-bash">sudo apt install libtool libfftw3-3 libfftw3-dev libcfitsio8 libcfitsio-dev wget libpng-dev libgd-dev autoconf automake libtool m4 git gsl-bin libgsl-dev flex bison fort77 libglib2.0-dev gnuplot python-dev python-numpy python-scipy python-matplotlib python-setuptools python-sympy python-nose swig libltdl-dev libltdl7 cmake libblas3 liblapack3 libblas-dev liblapack-dev libxext-dev libx11-dev libopenmpi-dev openmpi-bin libhdf5-openmpi-dev mpich libmpich-dev libhdf5-mpich-dev tcsh pgplot5 imagemagick bc latex2html gfortran
+<pre><code class="language-bash">sudo apt install  build-essential autoconf autotools-dev automake autogen libtool pkg-config cmake csh g++ gcc gfortran wget git expect libcfitsio-dev hwloc perl pcre2-utils libpcre2-dev pgplot5 python3 python3-dev python3-testresources python3-pip python3-setuptools python3-tk libfftw3-3 libfftw3-bin libfftw3-dev libfftw3-single3 libx11-dev libpcre3 libpcre3-dev libpng-dev libpnglite-dev libhdf5-dev libhdf5-serial-dev libxml2 libxml2-dev libltdl-dev gsl-bin libgsl-dev libblas-dev liblapack-dev xorg libglib2.0-dev
 </code></pre>
 <h3 id="install-manually-hard">Install manually (hard)</h3>
 <p>If you would like to install these dependencies manually
@@ -265,11 +306,29 @@ collect2: error: ld returned 1 exit status
 </code></pre>
 <p>This is due to new compilers (gcc version &gt;9) not liking the old variable definition style.
 You can make it ignore these issues by adding a compiler option like so:</p>
-<pre><code class="language-bash">make CFLAGS=-fcommon
+<pre><code class="language-bash">./configure CFLAGS=-fcommon
+make clean
+make
 </code></pre>
-<h2 id="pgplot">pgplot</h2>
+<h4 id="pgplot">pgplot</h4>
+<pre><code class="language-bash">cd $ASTROSOFT
+wget ftp://ftp.astro.caltech.edu/pub/pgplot/pgplot5.2.tar.gz
+tar -xzf pgplot5.2.tar.gz
+rm -r pgplot5.2.tar.gz
+cd pgplot
+sed -i &quot;s/g77/gfortran/&quot; sys_linux/g77_gcc.conf
+makemake ${ASTROSOFT}/pgplot linux g77_gcc
+make
+make cpg
+make clean
+</code></pre>
+<p>Update your `~/.bashrc to include:</p>
+<pre><code class="language-bash">export PGPLOT_DIR=${ASTROSOFT}/pgplot
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ASTROSOFT}/pgplot
+</code></pre>
 <h2 id="psrcat">psrcat</h2>
-<pre><code class="language-bash">wget https://www.atnf.csiro.au/research/pulsar/psrcat/downloads/psrcat_pkg.tar.gz
+<pre><code class="language-bash">cd $ASTROSOFT
+wget https://www.atnf.csiro.au/research/pulsar/psrcat/downloads/psrcat_pkg.tar.gz
 gunzip -c psrcat_pkg.tar.gz | tar xvf -
 cd psrcat_tar
 source makeit
@@ -286,23 +345,32 @@ You can make it ignore these issues by adding a compiler option like so:</p>
 </code></pre>
 <p>Then recompile (run <code>source makeit</code> again)</p>
 <h2 id="tempo">tempo</h2>
+<pre><code class="language-bash">cd $ASTROSOFT
+git clone http://git.code.sf.net/p/tempo/tempo
+cd tempo
+./prepare
+./configure --prefix=$ASTROSOFT
+make
+make install
+</code></pre>
 <h2 id="tempo2">tempo2</h2>
-<pre><code>git clone https://bitbucket.org/psrsoft/tempo2.git
+<pre><code class="language-bash">cd $ASTROSOFT
+git clone https://bitbucket.org/psrsoft/tempo2.git
 cd tempo2
 ./bootstrap
-./configure --prefix=${ASTROSOFT} --with-calceph=${PSRHOME_CALCEPH_PATH}
+./configure --prefix=${ASTROSOFT}
 make
-make plugins
 make install
+make plugins
 make plugins-install
 make clean
 </code></pre>
-<h2 id="presto">presto</h2>
 <h2 id="psrchive">psrchive</h2>
-<pre><code>git clone git://git.code.sf.net/p/psrchive/code psrchive
+<pre><code class="language-bash">cd $ASTROSOFT
+git clone git://git.code.sf.net/p/psrchive/code psrchive
 cd psrchive
 ./bootstrap
-./configure --prefix=$ASTROSOFT --with-psrxml-dir=${PSRHOME_PSRXML_PATH} --enable-shared
+./configure --prefix=${ASTROSOFT} --enable-shared
 make
 make install
 make clean
@@ -316,14 +384,18 @@ make clean
 Error: Type mismatch between actual argument at (1) and actual argument at (2) (REAL(4)/INTEGER(4)).
 </code></pre>
 <p>This is due to a type missmatch that modern gfortran compilers don't like, to ignore it run</p>
-<pre><code>export FFLAGS=&quot;-fallow-argument-mismatch&quot;
+<pre><code>./configure --prefix=${ASTROSOFT} --enable-shared FLAGS=&quot;-fallow-argument-mismatch&quot;
+make clean
+make
+make install
+make clean
 </code></pre>
-<p>Then recompile (run the <code>make</code> commands again)</p>
 <h2 id="dspsr">dspsr</h2>
-<pre><code>git clone git://git.code.sf.net/p/dspsr/code dspsr
+<pre><code class="language-bash">cd $ASTROSOFT
+git clone git://git.code.sf.net/p/dspsr/code dspsr
 cd dspsr
 ./bootstrap
-./configure --prefix=${install_dir} --with-psrxml-dir=${PSRHOME_PSRXML_PATH} &gt;&amp; ${build_dir}/build.log
+./configure --prefix=${ASTROSOFT}
 make
 make install
 make clean
@@ -339,10 +411,22 @@ make clean
 </code></pre>
 <p>then recompiling (running the <code>make</code> commands again)</p>
 <h2 id="sigproc">sigproc</h2>
-<pre><code>git clone https://github.com/SixByNine/sigproc.git
+<pre><code class="language-bash">cd $ASTROSOFT
+git clone https://github.com/SixByNine/sigproc.git
 cd sigproc
 ./bootstrap
-./configure --prefix=${install_dir} --with-psrxml-dir=${PSRHOME_PSRXML_PATH}
+./configure --prefix=${ASTROSOFT} F77=gfortran
+make
+make install
+make clean
+</code></pre>
+<p>If you get an error like this</p>
+<pre><code>... multiple definition of ... first defined here
+collect2: error: ld returned 1 exit status
+</code></pre>
+<p>it is the old gcc error again. Fix it like this</p>
+<pre><code>./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon
+make clean
 make
 make install
 make clean
@@ -351,29 +435,47 @@ make clean
 <pre><code>Error: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
 </code></pre>
 <p>You can make the compiler ignore this with the option <code>-fallow-argument-mismatch</code> by running make again like so</p>
-<pre><code>make FFLAGS=-fallow-argument-mismatch
-
-
-If you get an error like this
+<pre><code>./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon FFLAGS=-fallow-argument-mismatch
+make clean
+make
+make install
+make clean
 </code></pre>
-<p>... multiple definition of ... first defined here
-collect2: error: ld returned 1 exit status</p>
-<pre><code>it is the old gcc error again. Fix it like this
-</code></pre>
-<p>make CFLAGS=-fcommon</p>
-<pre><code>
-If you get an error like this
-</code></pre>
-<p>inject_pulsar.c:548:35: error: 'nprof' not specified in enclosing 'parallel'
+<p>If you get an error like this</p>
+<pre><code>inject_pulsar.c:548:35: error: 'nprof' not specified in enclosing 'parallel'
   548 |                 for(unsigned i=0; i &lt; nprof;i++){
       |                                   ^
 inject_pulsar.c:547:9: note: enclosing 'parallel'
   547 | #pragma omp parallel for  default(none) shared(subpulse_map)
       |         ^~~
-<code>``
-This is because some of the variables in the parallel for loop
+</code></pre>
+<p>This is because some of the variables in the parallel for loop
 were not explictly labeled as private or shared.
-The easiest way to fix this is to turn off</code>default(none)` like so</p>
+The easiest way to fix this is to turn off <code>default(none)</code> like so</p>
+<pre><code>sed -i &quot;s/default(none)//&quot; src/inject_pulsar.c
+</code></pre>
+<p>Then recompile</p>
+<h2 id="presto">presto</h2>
+<p>To install the C stuff (python stuff is further down)</p>
+<pre><code class="language-bash">cd $ASTROSOFT
+git clone https://github.com/scottransom/presto.git
+cd presto/src
+make prep
+make
+make clean
+</code></pre>
+<p>If you see lots of undefined references starting with cpg like this:</p>
+<pre><code>/usr/bin/ld: xyline.c:(.text+0x12ef): undefined reference to `cpgmtxt'
+/usr/bin/ld: xyline.c:(.text+0x132a): undefined reference to `cpgline'
+/usr/bin/ld: xyline.c:(.text+0x1334): undefined reference to `cpgslw'
+/usr/bin/ld: xyline.c:(.text+0x1359): undefined reference to `cpgiden'
+</code></pre>
+<p>Then it is likely something wrong with your pgplot installation.
+Make sure your environment variable <code>PGPLOT_DIR</code> is pointing to the right place.</p>
+<p>Now install the python stuff as well</p>
+<pre><code class="language-bash">cd $ASTROSOFT/presto
+python3 setup.py install --prefix=$PRESTO
+</code></pre>
               
             </div>
           </div><footer>
