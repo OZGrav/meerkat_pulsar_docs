@@ -24,11 +24,6 @@ If you prefer the `bash` shell (the default) then add the following to your `~/.
 source /fred/oz002/psrhome/scripts/psrhome.sh
 ```
 
-or if you prefer the `tsch` shell (C shell) then add the following to your `~/.cshrc` with your favorite test editor:
-```bash
-source /fred/oz002/psrhome/scripts/psrhome.csh
-```
-
 Then to load these changes run
 ```bash
 source ~/.bashrc
@@ -36,4 +31,13 @@ source ~/.bashrc
 to load these changes (this will be done by default when you log in)
 
 The common pulsar software is now loaded and ready for you to use.
+
+### Loading pulsar software with tsch
+
+If you prefer the `tsch` shell (C shell) then add the following to your `~/.cshrc` with your favorite test editor:
+```bash
+source /fred/oz002/psrhome/scripts/psrhome.csh
+```
+
+You can change your shell with `changeShell` command (see the [docs](https://supercomputing.swin.edu.au/docs/1-getting_started/FAQ.html?highlight=shell#how-can-i-change-my-login-shell))
 
