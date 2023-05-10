@@ -1,19 +1,19 @@
 name: Build Documentation using MkDocs
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events but only for the main branch
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
     name: Build and Deploy Documentation
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Master
+      - name: Checkout Main
         uses: actions/checkout@v2
 
       - name: Set up Python 3.10
