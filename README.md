@@ -6,3 +6,4 @@ These docs are made with `mkdocs` so to build the documentation locally just run
 mkdocs serve
 ```
 and use the link to view them in your browser
+
