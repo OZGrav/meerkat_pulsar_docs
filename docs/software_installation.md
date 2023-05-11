@@ -65,7 +65,7 @@ not this:
 make clean
 make CFLAGS=<C flags here> FFLAGS=<fortran flags here>
 ```
-as adding `CFLAGS` or `FFLAGS` tot he `make` command may overwrite other compiler flags.
+as adding `CFLAGS` or `FFLAGS` to the `make` command may overwrite other compiler flags.
 
 ## Dependencies
 
@@ -184,15 +184,21 @@ then the following sections will show you how install each dependency manually.
 
 #### FFTW
 
+If you want a different version you can find the tar for of it in their [downloads page](https://fftw.org/pub/fftw/)
+
 ```bash
+cd $ASTROSOFT
+wget https://fftw.org/pub/fftw/fftw-3.3.8.tar.gz
+tar -xzf fftw-3.3.8.tar.gz
+cd fftw-3.3.8
 autoreconf --verbose --install --symlink --force
-./configure --enable-shared --enable-float --enable-sse --disable-dependency-tracking [--prefix=${install_dir}]
+./configure --enable-shared --enable-float --enable-sse --disable-dependency-tracking --prefix=${ASTROSOFT}
 make clean
 make
 make install
 ```
 
-#### psrfits_utils
+<!-- #### psrfits_utils
 
 #### psrxml
 
@@ -200,15 +206,17 @@ make install
 
 #### cfitsio
 
-#### splinter
+#### splinter -->
 
 #### psrdada
 
-```
-git clone ssh://ajameson@git.code.sf.net/p/psrdada/code psrdada"
+```bash
+cd $ASTROSOFT
+git clone git://git.code.sf.net/p/psrdada/code psrdada
+cd psrdada
 ./bootstrap
-./configure --prefix=${install_dir} --with-cuda-dir=$EBROOTCUDA --with-sofa-dir=$PSRHOME_SOFA_PATH --with-fftw3-dir=$PSRHOME_FFTW_SP_PATH --enable-shared
-# make clean
+./configure --prefix=${ASTROSOFT}
+make clean
 make
 make install
 make clean
@@ -247,9 +255,13 @@ export PGPLOT_DIR=${ASTROSOFT}/pgplot
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ASTROSOFT}/pgplot
 ```
 
+## Common pulsar software
 
+The following are the commands required to download and install common pulsar software.
+It is recomended to install them in the following order as some software (such as Tempo)
+are dependencies for other packages.
 
-## psrcat
+### psrcat
 
 ```bash
 cd $ASTROSOFT
@@ -277,7 +289,7 @@ Then recompile (run `source makeit` again)
 
 
 
-## tempo
+### tempo
 
 ```bash
 cd $ASTROSOFT
@@ -289,7 +301,7 @@ make
 make install
 ```
 
-## tempo2
+### tempo2
 
 ```bash
 cd $ASTROSOFT
@@ -304,7 +316,7 @@ make plugins-install
 make clean
 ```
 
-## psrchive
+### psrchive
 
 
 ```bash
@@ -337,7 +349,7 @@ make clean
 ```
 
 
-## dspsr
+### dspsr
 
 
 ```bash
@@ -367,7 +379,7 @@ sed -i 's/constexpr static std::size_t sigStackSize = 32768 >= MINSIGSTKSZ ? 327
 then recompiling (running the `make` commands again)
 
 
-## sigproc
+### sigproc
 
 ```bash
 cd $ASTROSOFT
@@ -388,7 +400,7 @@ If you get an error like this
 collect2: error: ld returned 1 exit status
 ```
 it is the old gcc error again. Fix it like this
-```
+```bash
 ./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon
 make clean
 make
@@ -401,7 +413,7 @@ You may get an error like this
 Error: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
 ```
 You can make the compiler ignore this with the option `-fallow-argument-mismatch` by running make again like so
-```
+```bash
 ./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon FFLAGS=-fallow-argument-mismatch
 make clean
 make
@@ -430,7 +442,7 @@ Then recompile
 
 
 
-## presto
+### presto
 
 To install the C stuff (python stuff is further down)
 ```bash
@@ -456,5 +468,14 @@ Now install the python stuff as well
 ```bash
 cd $ASTROSOFT/presto
 python3 setup.py install --prefix=$PRESTO
+```
+
+If when using some of the presto python packages you see an error like this:
+```
+pkg_resources.DistributionNotFound: The 'pyslalib' distribution was not found and is required by presto
+```
+Then you also need to install the `pyslalib` python pacakge like this
+```bash
+pip install pyslalib
 ```
 

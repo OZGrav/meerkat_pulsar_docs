@@ -32,6 +32,18 @@ to load these changes (this will be done by default when you log in)
 
 The common pulsar software is now loaded and ready for you to use.
 
+If you do not want to automatically load the common pulsar software or load a specific version instead, you can set up `alias` in your `~/.bashrc` like so:
+
+```bash
+# Load latest version of pulsar software
+alias psrhome="source /fred/oz002/psrhome/scripts/psrhome.sh"
+# Load an older version of the pulsar software
+alias psr2023="module use /apps/users/pulsar/milan/gcc-11.3.0/modulefiles; module load psrhome/2023-05"
+# Load your python virtual environment
+alias venv="ml gcc/11.3.0 openmpi/4.1.4 python/3.10.4; source /dir/to/your/venv/bin/activate"
+```
+So now when you log in you can run `psrhome` to load pulsar software or `venv` if you want to do some python programming ([here](https://supercomputing.swin.edu.au/docs/2-ozstar/Python.html) is OzSTAR's virtual environment documentation).
+
 ### Loading pulsar software with tsch
 
 If you prefer the `tsch` shell (C shell) then add the following to your `~/.cshrc` with your favorite test editor:
