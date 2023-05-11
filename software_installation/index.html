@@ -63,16 +63,6 @@
         <ul>
     <li class="toctree-l4"><a class="reference internal" href="#fftw">FFTW</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#psrfits_utils">psrfits_utils</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#psrxml">psrxml</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#calceph">calceph</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#cfitsio">cfitsio</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#splinter">splinter</a>
-    </li>
     <li class="toctree-l4"><a class="reference internal" href="#psrdada">psrdada</a>
     </li>
     <li class="toctree-l4"><a class="reference internal" href="#pgplot">pgplot</a>
@@ -81,19 +71,23 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#psrcat">psrcat</a>
+    <li class="toctree-l2"><a class="reference internal" href="#common-pulsar-software">Common pulsar software</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#psrcat">psrcat</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tempo">tempo</a>
+    <li class="toctree-l3"><a class="reference internal" href="#tempo">tempo</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#tempo2">tempo2</a>
+    <li class="toctree-l3"><a class="reference internal" href="#tempo2">tempo2</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#psrchive">psrchive</a>
+    <li class="toctree-l3"><a class="reference internal" href="#psrchive">psrchive</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#dspsr">dspsr</a>
+    <li class="toctree-l3"><a class="reference internal" href="#dspsr">dspsr</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#sigproc">sigproc</a>
+    <li class="toctree-l3"><a class="reference internal" href="#sigproc">sigproc</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#presto">presto</a>
+    <li class="toctree-l3"><a class="reference internal" href="#presto">presto</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -178,7 +172,7 @@ make
 make clean
 make CFLAGS=&lt;C flags here&gt; FFLAGS=&lt;fortran flags here&gt;
 </code></pre>
-<p>as adding <code>CFLAGS</code> or <code>FFLAGS</code> tot he <code>make</code> command may overwrite other compiler flags.</p>
+<p>as adding <code>CFLAGS</code> or <code>FFLAGS</code> to the <code>make</code> command may overwrite other compiler flags.</p>
 <h2 id="dependencies">Dependencies</h2>
 <p>You will need to install the following packages with a package manager:</p>
 <pre><code class="language-bash">build-essential
@@ -280,22 +274,34 @@ the following command will install the required dependencies on linux debian ope
 (because you are installing it on supercomputer perhaps)
 then the following sections will show you how install each dependency manually.</p>
 <h4 id="fftw">FFTW</h4>
-<pre><code class="language-bash">autoreconf --verbose --install --symlink --force
-./configure --enable-shared --enable-float --enable-sse --disable-dependency-tracking [--prefix=${install_dir}]
+<p>If you want a different version you can find the tar for of it in their <a href="https://fftw.org/pub/fftw/">downloads page</a></p>
+<pre><code class="language-bash">cd $ASTROSOFT
+wget https://fftw.org/pub/fftw/fftw-3.3.8.tar.gz
+tar -xzf fftw-3.3.8.tar.gz
+cd fftw-3.3.8
+autoreconf --verbose --install --symlink --force
+./configure --enable-shared --enable-float --enable-sse --disable-dependency-tracking --prefix=${ASTROSOFT}
 make clean
 make
 make install
 </code></pre>
-<h4 id="psrfits_utils">psrfits_utils</h4>
-<h4 id="psrxml">psrxml</h4>
-<h4 id="calceph">calceph</h4>
-<h4 id="cfitsio">cfitsio</h4>
-<h4 id="splinter">splinter</h4>
+<!-- #### psrfits_utils
+
+#### psrxml
+
+#### calceph
+
+#### cfitsio
+
+#### splinter -->
+
 <h4 id="psrdada">psrdada</h4>
-<pre><code>git clone ssh://ajameson@git.code.sf.net/p/psrdada/code psrdada&quot;
+<pre><code class="language-bash">cd $ASTROSOFT
+git clone git://git.code.sf.net/p/psrdada/code psrdada
+cd psrdada
 ./bootstrap
-./configure --prefix=${install_dir} --with-cuda-dir=$EBROOTCUDA --with-sofa-dir=$PSRHOME_SOFA_PATH --with-fftw3-dir=$PSRHOME_FFTW_SP_PATH --enable-shared
-# make clean
+./configure --prefix=${ASTROSOFT}
+make clean
 make
 make install
 make clean
@@ -326,7 +332,11 @@ make clean
 <pre><code class="language-bash">export PGPLOT_DIR=${ASTROSOFT}/pgplot
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ASTROSOFT}/pgplot
 </code></pre>
-<h2 id="psrcat">psrcat</h2>
+<h2 id="common-pulsar-software">Common pulsar software</h2>
+<p>The following are the commands required to download and install common pulsar software.
+It is recomended to install them in the following order as some software (such as Tempo)
+are dependencies for other packages.</p>
+<h3 id="psrcat">psrcat</h3>
 <pre><code class="language-bash">cd $ASTROSOFT
 wget https://www.atnf.csiro.au/research/pulsar/psrcat/downloads/psrcat_pkg.tar.gz
 gunzip -c psrcat_pkg.tar.gz | tar xvf -
@@ -344,7 +354,7 @@ You can make it ignore these issues by adding a compiler option like so:</p>
 <pre><code class="language-bash">sed -i 's&amp;/usr/bin/gcc&amp;/usr/bin/gcc -fcommon&amp;g' makeit
 </code></pre>
 <p>Then recompile (run <code>source makeit</code> again)</p>
-<h2 id="tempo">tempo</h2>
+<h3 id="tempo">tempo</h3>
 <pre><code class="language-bash">cd $ASTROSOFT
 git clone http://git.code.sf.net/p/tempo/tempo
 cd tempo
@@ -353,7 +363,7 @@ cd tempo
 make
 make install
 </code></pre>
-<h2 id="tempo2">tempo2</h2>
+<h3 id="tempo2">tempo2</h3>
 <pre><code class="language-bash">cd $ASTROSOFT
 git clone https://bitbucket.org/psrsoft/tempo2.git
 cd tempo2
@@ -365,7 +375,7 @@ make plugins
 make plugins-install
 make clean
 </code></pre>
-<h2 id="psrchive">psrchive</h2>
+<h3 id="psrchive">psrchive</h3>
 <pre><code class="language-bash">cd $ASTROSOFT
 git clone git://git.code.sf.net/p/psrchive/code psrchive
 cd psrchive
@@ -390,7 +400,7 @@ make
 make install
 make clean
 </code></pre>
-<h2 id="dspsr">dspsr</h2>
+<h3 id="dspsr">dspsr</h3>
 <pre><code class="language-bash">cd $ASTROSOFT
 git clone git://git.code.sf.net/p/dspsr/code dspsr
 cd dspsr
@@ -410,7 +420,7 @@ make clean
 <pre><code>sed -i 's/constexpr static std::size_t sigStackSize = 32768 &gt;= MINSIGSTKSZ ? 32768 : MINSIGSTKSZ;/constexpr static std::size_t sigStackSize = 32768;/' test/catch.hpp
 </code></pre>
 <p>then recompiling (running the <code>make</code> commands again)</p>
-<h2 id="sigproc">sigproc</h2>
+<h3 id="sigproc">sigproc</h3>
 <pre><code class="language-bash">cd $ASTROSOFT
 git clone https://github.com/SixByNine/sigproc.git
 cd sigproc
@@ -425,7 +435,7 @@ make clean
 collect2: error: ld returned 1 exit status
 </code></pre>
 <p>it is the old gcc error again. Fix it like this</p>
-<pre><code>./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon
+<pre><code class="language-bash">./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon
 make clean
 make
 make install
@@ -435,7 +445,7 @@ make clean
 <pre><code>Error: Rank mismatch between actual argument at (1) and actual argument at (2) (scalar and rank-1)
 </code></pre>
 <p>You can make the compiler ignore this with the option <code>-fallow-argument-mismatch</code> by running make again like so</p>
-<pre><code>./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon FFLAGS=-fallow-argument-mismatch
+<pre><code class="language-bash">./configure --prefix=${ASTROSOFT} F77=gfortran CFLAGS=-fcommon FFLAGS=-fallow-argument-mismatch
 make clean
 make
 make install
@@ -455,7 +465,7 @@ The easiest way to fix this is to turn off <code>default(none)</code> like so</p
 <pre><code>sed -i &quot;s/default(none)//&quot; src/inject_pulsar.c
 </code></pre>
 <p>Then recompile</p>
-<h2 id="presto">presto</h2>
+<h3 id="presto">presto</h3>
 <p>To install the C stuff (python stuff is further down)</p>
 <pre><code class="language-bash">cd $ASTROSOFT
 git clone https://github.com/scottransom/presto.git
@@ -475,6 +485,12 @@ Make sure your environment variable <code>PGPLOT_DIR</code> is pointing to the r
 <p>Now install the python stuff as well</p>
 <pre><code class="language-bash">cd $ASTROSOFT/presto
 python3 setup.py install --prefix=$PRESTO
+</code></pre>
+<p>If when using some of the presto python packages you see an error like this:</p>
+<pre><code>pkg_resources.DistributionNotFound: The 'pyslalib' distribution was not found and is required by presto
+</code></pre>
+<p>Then you also need to install the <code>pyslalib</code> python pacakge like this</p>
+<pre><code class="language-bash">pip install pyslalib
 </code></pre>
               
             </div>

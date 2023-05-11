@@ -111,6 +111,15 @@ The following projects relate to MeerKat pulsar astronomy:</p>
 </code></pre>
 <p>to load these changes (this will be done by default when you log in)</p>
 <p>The common pulsar software is now loaded and ready for you to use.</p>
+<p>If you do not want to automatically load the common pulsar software or load a specific version instead, you can set up <code>alias</code> in your <code>~/.bashrc</code> like so:</p>
+<pre><code class="language-bash"># Load latest version of pulsar software
+alias psrhome=&quot;source /fred/oz002/psrhome/scripts/psrhome.sh&quot;
+# Load an older version of the pulsar software
+alias psr2023=&quot;module use /apps/users/pulsar/milan/gcc-11.3.0/modulefiles; module load psrhome/2023-05&quot;
+# Load your python virtual environment
+alias venv=&quot;ml gcc/11.3.0 openmpi/4.1.4 python/3.10.4; source /dir/to/your/venv/bin/activate&quot;
+</code></pre>
+<p>So now when you log in you can run <code>psrhome</code> to load pulsar software or <code>venv</code> if you want to do some python programming (<a href="https://supercomputing.swin.edu.au/docs/2-ozstar/Python.html">here</a> is OzSTAR's virtual environment documentation).</p>
 <h3 id="loading-pulsar-software-with-tsch">Loading pulsar software with tsch</h3>
 <p>If you prefer the <code>tsch</code> shell (C shell) then add the following to your <code>~/.cshrc</code> with your favorite test editor:</p>
 <pre><code class="language-bash">source /fred/oz002/psrhome/scripts/psrhome.csh
