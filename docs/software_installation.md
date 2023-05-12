@@ -49,7 +49,9 @@ You should never copy the executable files (outputs of the compilers that you us
 These will have been compiled on a different systems so they will be built for different infrastructure and dependencies so they likely will not run on your system.
 
 To get software to compile you often have to add different compiler flags/options so they work for your dependencies and compiler versions.
-You can add these compiler flags using `CFLAGS=<C flags here>` for the `gcc` compiler and `FFLAGS=<fortran flags here>` for the `gfortran` compiler.
+You can add these compiler flags using `CFLAGS=<C flags here>` for the `gcc` compiler, `CXXFLAGS=<C++ flags here>`
+for the `c++` compiler and `FFLAGS=<fortran flags here>` for the `gfortran` compiler.
+There `configure` script offers many command line options for enabling/disabling features which you can check with the `--help` option.
 If the software has a `configure` script it is best to add the flags to the `./configure` command
 as they will be appended to the other flags the `configure` script determines the compiler requires.
 So do this:
