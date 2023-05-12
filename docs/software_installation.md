@@ -1,6 +1,8 @@
 # Software installation
 
-How to install common pulsar software and some of the common problems you may encounter.
+The following documentation will explain how to install common pulsar software and some of the common problems you may encounter.
+Most of the time, it will be easier and more efficient to use the precompiled software on OzSTAR
+so this guide is only for those who want to install the software on a laptop or desktop for some quick local processing.
 
 ## Containers
 
