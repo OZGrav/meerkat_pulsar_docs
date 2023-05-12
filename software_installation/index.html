@@ -158,7 +158,9 @@ So if the compiler is complaining about not finding software check the <code>./b
 <p>You should never copy the executable files (outputs of the compilers that you use to run code) or configure scripts from other computers/systems.
 These will have been compiled on a different systems so they will be built for different infrastructure and dependencies so they likely will not run on your system.</p>
 <p>To get software to compile you often have to add different compiler flags/options so they work for your dependencies and compiler versions.
-You can add these compiler flags using <code>CFLAGS=&lt;C flags here&gt;</code> for the <code>gcc</code> compiler and <code>FFLAGS=&lt;fortran flags here&gt;</code> for the <code>gfortran</code> compiler.
+You can add these compiler flags using <code>CFLAGS=&lt;C flags here&gt;</code> for the <code>gcc</code> compiler, <code>CXXFLAGS=&lt;C++ flags here&gt;</code>
+for the <code>c++</code> compiler and <code>FFLAGS=&lt;fortran flags here&gt;</code> for the <code>gfortran</code> compiler.
+There <code>configure</code> script offers many command line options for enabling/disabling features which you can check with the <code>--help</code> option.
 If the software has a <code>configure</code> script it is best to add the flags to the <code>./configure</code> command
 as they will be appended to the other flags the <code>configure</code> script determines the compiler requires.
 So do this:</p>
