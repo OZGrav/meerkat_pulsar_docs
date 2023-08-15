@@ -38,7 +38,7 @@ If you do not want to automatically load the common pulsar software or load a sp
 # Load latest version of pulsar software
 alias psrhome="source /fred/oz002/psrhome/scripts/psrhome.sh"
 # Load an older version of the pulsar software
-alias psr2023="module use /apps/users/pulsar/milan/gcc-11.3.0/modulefiles; module load psrhome/2023-05"
+alias psr2023="module use /apps/users/pulsar/milan/gcc-11.3.0/modulefiles; module use /apps/users/pulsar/common/modulefiles; module load psrhome/2023-05"
 # Load your python virtual environment
 alias venv="ml gcc/11.3.0 openmpi/4.1.4 python/3.10.4; source /dir/to/your/venv/bin/activate"
 ```
