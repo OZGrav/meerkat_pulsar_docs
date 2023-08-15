@@ -8,7 +8,7 @@
     <title>OzStar - Pulsar Processing: MeerKAT documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,12 +17,11 @@
         var mkdocs_page_url = "/ozstar/";
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -80,7 +79,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>OzStar</li>
+      <li class="breadcrumb-item active">OzStar</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -115,7 +114,7 @@ The following projects relate to MeerKat pulsar astronomy:</p>
 <pre><code class="language-bash"># Load latest version of pulsar software
 alias psrhome=&quot;source /fred/oz002/psrhome/scripts/psrhome.sh&quot;
 # Load an older version of the pulsar software
-alias psr2023=&quot;module use /apps/users/pulsar/milan/gcc-11.3.0/modulefiles; module load psrhome/2023-05&quot;
+alias psr2023=&quot;module use /apps/users/pulsar/milan/gcc-11.3.0/modulefiles; module use /apps/users/pulsar/common/modulefiles; module load psrhome/2023-05&quot;
 # Load your python virtual environment
 alias venv=&quot;ml gcc/11.3.0 openmpi/4.1.4 python/3.10.4; source /dir/to/your/venv/bin/activate&quot;
 </code></pre>
@@ -160,14 +159,15 @@ alias venv=&quot;ml gcc/11.3.0 openmpi/4.1.4 python/3.10.4; source /dir/to/your/
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
