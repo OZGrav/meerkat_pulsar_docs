@@ -58,9 +58,9 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#how-to-use">How to use</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#layout">Layout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ephemeris-creation-methods">Ephemeris Creation Methods</a>
         <ul>
@@ -115,9 +115,6 @@ The central place will also make it easier for researchers in charge of rerunnin
 <p>You can use a similar command to grab the template and you can also specify the band (LBAND, UHF, SBAND_0, SBAND_1, SBAND_2, SBAND_3, SBAND_4)</p>
 <pre><code>grab_template &lt;pulsar&gt; --project &lt;project&gt; --band &lt;band&gt;
 </code></pre>
-<h2 id="development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</h2>
-<p>To access the repository you must request to become a member of the GitHub team <a href="https://github.com/orgs/OZGrav/teams/meerkat-pulsar-timing">Meerkat Pulsar Timing</a> by emailing Matthew Bailes or Nicholas Swainston.</p>
-<p>pull request add old authors of files as reviewers if you are replacing or changing files they created</p>
 <h2 id="layout">Layout</h2>
 <p>The repository is layed out like so:</p>
 <pre><code>.
@@ -155,6 +152,9 @@ The central place will also make it easier for researchers in charge of rerunnin
 Only when multiple projects start to refine ephemerides and templates for differing goals should they use different project directories.</p>
 <p>The python scripts in <code>ephem_template</code> are simple scripts to decide which ephemeris or template to return based on the input pulsar name, project and observing band.</p>
 <p>The bash scripts in <code>dev_scripts</code> create or rename ephemerides and templates in a consistent way then put them into the correct directory to make development easier and more consistent.</p>
+<h2 id="development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</h2>
+<p>To access the repository you must request to become a member of the GitHub team <a href="https://github.com/orgs/OZGrav/teams/meerkat-pulsar-timing">Meerkat Pulsar Timing</a> by emailing Matthew Bailes or Nicholas Swainston.</p>
+<p>pull request add old authors of files as reviewers if you are replacing or changing files they created</p>
 <h2 id="ephemeris-creation-methods">Ephemeris Creation Methods</h2>
 <p>The <code>dev_scripts/create_ephemeris.sh</code> is used to create ephemerides and has the following options:</p>
 <pre><code class="language-sh">Usage: dev_scripts/create_ephemeris.sh [-h] [-p project] [-m method] pulsar
