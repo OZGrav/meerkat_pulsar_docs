@@ -25,13 +25,6 @@ You can use a similar command to grab the template and you can also specify the 
 grab_template <pulsar> --project <project> --band <band>
 ```
 
-## Development (add or update ephemerides and templates)
-
-To access the repository you must request to become a member of the GitHub team [Meerkat Pulsar Timing](https://github.com/orgs/OZGrav/teams/meerkat-pulsar-timing) by emailing Matthew Bailes or Nicholas Swainston.
-
-
-pull request add old authors of files as reviewers if you are replacing or changing files they created
-
 ## Layout
 
 The repository is layed out like so:
@@ -78,6 +71,13 @@ Only when multiple projects start to refine ephemerides and templates for differ
 The python scripts in `ephem_template` are simple scripts to decide which ephemeris or template to return based on the input pulsar name, project and observing band.
 
 The bash scripts in `dev_scripts` create or rename ephemerides and templates in a consistent way then put them into the correct directory to make development easier and more consistent.
+
+## Development (add or update ephemerides and templates)
+
+To access the repository you must request to become a member of the GitHub team [Meerkat Pulsar Timing](https://github.com/orgs/OZGrav/teams/meerkat-pulsar-timing) by emailing Matthew Bailes or Nicholas Swainston.
+
+
+pull request add old authors of files as reviewers if you are replacing or changing files they created
 
 
 ## Ephemeris Creation Methods
