@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/ephem_template/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>MeerTime Ephemerides and Templates - Pulsar Processing: MeerKAT documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MeerTime Ephemerides and Templates";
+        var mkdocs_page_input_path = "ephem_template.md";
+        var mkdocs_page_url = "/ephem_template/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Pulsar Processing: MeerKAT documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ozstar/">OzStar</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../software_installation/">Software Installation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">MeerTime Ephemerides and Templates</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-use">How to use</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#layout">Layout</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ephemeris-creation-methods">Ephemeris Creation Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#atnf">ATNF</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#template-creation-methods">Template Creation Methods</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../command_examples/">Command examples</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Pulsar Processing: MeerKAT documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">MeerTime Ephemerides and Templates</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="meertime-ephemerides-and-templates">MeerTime Ephemerides and Templates</h1>
+<p>The ephemerides and templates used by the different MeerTime project (PTA, TPA, RelBin and GC) are all stored in a <a href="https://github.com/OZGrav/meertime_ephemerides_and_templates">private repository</a>.</p>
+<h2 id="motivation">Motivation</h2>
+<p>The goal of this repository is to store all ephemerides and templates in one place to avoid duplication of work and make it clear how templates and ephemerides were created.
+Making the repository private prevents the values in the ephemerides being scoped by other researchers.
+It also allows control of the quality of ephemerides and templates by using automated testing of the files before they are pulled into the main branch and automated creation scripts to make the process more consistent.
+The central place will also make it easier for researchers in charge of rerunning processing pipelines to know when to reprocess pulsars and this may even be automated in the future.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>Once the python scripts are <a href="https://github.com/OZGrav/meertime_ephemerides_and_templates#installation">installed</a> you can return the path of the ephemeris for a particular pulsar and project (PTA, TPA, RelBin or GC) using:</p>
+<pre><code>grab_ephemeris &lt;pulsar&gt; --project &lt;project&gt;
+</code></pre>
+<p>This will grab a project specific ephemeris if it is available or the default ephemeris if it is not.</p>
+<p>You can use a similar command to grab the template and you can also specify the band (LBAND, UHF, SBAND_0, SBAND_1, SBAND_2, SBAND_3, SBAND_4)</p>
+<pre><code>grab_template &lt;pulsar&gt; --project &lt;project&gt; --band &lt;band&gt;
+</code></pre>
+<h2 id="development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</h2>
+<p>To access the repository you must request to become a member of the GitHub team <a href="https://github.com/orgs/OZGrav/teams/meerkat-pulsar-timing">Meerkat Pulsar Timing</a> by emailing Matthew Bailes or Nicholas Swainston.</p>
+<p>pull request add old authors of files as reviewers if you are replacing or changing files they created</p>
+<h2 id="layout">Layout</h2>
+<p>The repository is layed out like so:</p>
+<pre><code>.
+├── ephem_template
+│   ├── __init__.py
+│   ├── python_grabber.py
+│   ├── scripts
+│   │   ├── grab_ephemeris.py
+│   │   ├── grab_template.py
+│   │   └── __init__.py
+│   ├── ephemeris
+│   │   ├── default
+│   │   │   ├── J0437-4715_ATNFv1.70.par
+│   │   │   └── ...
+│   │   └── TPA
+│   │       ├── J0437-4715_ATNFv1.69.par
+│   │       └── ...
+│   └── template
+│       ├── LBAND
+│       │   └── default
+│       │       ├── J0437-4715_empty.std
+│       │       └── ...
+│       └── UHF
+│           └── default
+│               ├── J0437-4715_empty.std
+│               └── ...
+├── dev_scripts
+│   └── create_ephemeris.sh
+├── README.md
+└── setup.py
+</code></pre>
+<p>The <code>ephem_template/ephemeris</code> directory contains the timing ephemerides split into project subdirectories</p>
+<p>The <code>ephem_template/template</code> directory contains the standard templates split into observing band subdirectories then project subdirectories</p>
+<p>The <code>default</code> project is not for a specific project and is designed to be collaborative ephemerides and templates that do not have specific goals.
+Only when multiple projects start to refine ephemerides and templates for differing goals should they use different project directories.</p>
+<p>The python scripts in <code>ephem_template</code> are simple scripts to decide which ephemeris or template to return based on the input pulsar name, project and observing band.</p>
+<p>The bash scripts in <code>dev_scripts</code> create or rename ephemerides and templates in a consistent way then put them into the correct directory to make development easier and more consistent.</p>
+<h2 id="ephemeris-creation-methods">Ephemeris Creation Methods</h2>
+<p>The <code>dev_scripts/create_ephemeris.sh</code> is used to create ephemerides and has the following options:</p>
+<pre><code class="language-sh">Usage: dev_scripts/create_ephemeris.sh [-h] [-p project] [-m method] pulsar
+ -h Display this help message
+ -p Project (PTA, TPA, RelBin and GC) (default: default)
+ -m Method to create ephem (atnf, ) (default: atnf)
+</code></pre>
+<p>The project option will define which subdirectory the ephemeris is put into.
+The following subsections will describe the methods</p>
+<h3 id="atnf">ATNF</h3>
+<p>This method will create an ephemeris based on the ATNF pulsar catalogue with the following command:</p>
+<pre><code class="language-sh">cat_version=$(psrcat -v | tail -n 1  | cut -d ' ' -f 5)
+psrcat -e ${pulsar} &gt; ${base_path}/ephemeris/${project}/${pulsar}_ATNFv${cat_version}.par
+</code></pre>
+<p>Which will make a file that describes which ATNF catalogue version was used to create it.
+For example <code>J0437-4715_ATNFv1.70.par</code>.</p>
+<h2 id="template-creation-methods">Template Creation Methods</h2>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../software_installation/" class="btn btn-neutral float-left" title="Software Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../command_examples/" class="btn btn-neutral float-right" title="Command examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../software_installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../command_examples/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
