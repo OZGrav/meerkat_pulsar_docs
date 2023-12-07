@@ -13,5 +13,5 @@ so we can implement them.
 
 * [OzSTAR](ozstar.md) - How to load and use software on the OzSTAR supercomputer.
 * [Software Installation](software_installation.md) - How to install pulsar software.
+* [Command Examples](command_examples.md) - Examples of how to perform common tasks.
 * [MeerTime Ephemerides and Templates](ephem_template.md) - How to access the ephemerides and templates and how they were created
-* [Command Examples](commmand_exmaples.md) - Examples of how to perform common tasks.

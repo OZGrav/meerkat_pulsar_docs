@@ -5,5 +5,6 @@ nav:
     - Home: index.md
     - OzStar: ozstar.md
     - Software Installation: software_installation.md
-    - MeerTime Ephemerides and Templates: ephem_template.md
     - Command examples: command_examples.md
+    - MeerKAT Pulsar Processing Summary: meerkat_pulsar_summary.md
+    - MeerTime Ephemerides and Templates: ephem_template.md
