@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ozgrav.github.io/meerkat_pulsar_docs/ozstar_storage/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>OzSTAR storage - Pulsar Processing: MeerKAT documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "OzSTAR storage";
+        var mkdocs_page_input_path = "ozstar_storage.md";
+        var mkdocs_page_url = "/meerkat_pulsar_docs/ozstar_storage/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Pulsar Processing: MeerKAT documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ozstar/">OzStar</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../software_installation/">Software Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../command_examples/">Command examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../meerkat_pulsar_summary/">MeerKAT Pulsar Processing Summary</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../meerpipe/">MeerPipe</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">OzSTAR storage</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#processed-fold-mode-data">Processed fold mode data</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#images">Images</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#decimated">Decimated</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#timing">Timing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scintillation">Scintillation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#raw-fold-mode-data">Raw fold mode data</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#raw-search-mode-data">Raw search mode data</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ephem_template/">MeerTime Ephemerides and Templates</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Pulsar Processing: MeerKAT documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">OzSTAR storage</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ozstar-storage">OzSTAR Storage</h1>
+<p>The following is a description of where data is stored and the directory structure for the <a href="/meerkat_pulsar_docs/ozstar_storage/#processed-fold-mode-data">processed fold mode data</a>, <a href="/meerkat_pulsar_docs/ozstar_storage/#raw-fold-mode-data">raw fold mode data</a> and the <a href="/meerkat_pulsar_docs/ozstar_storage/#raw-search-mode-data">raw search mode data</a>.</p>
+<p>The following are used to describe the directory structure:</p>
+<ul>
+<li><code>&lt;pulsar&gt;</code>: A pulsar J name (e.g. J0437-4715)</li>
+<li><code>&lt;utc&gt;</code>: The start time of the observation in UTC and the format "YYYY-MM-DD-HH:MM:SS.SS" (e.g. 2023-12-11-03:23:30)</li>
+<li><code>&lt;beam&gt;</code>: The beam ID (the PTUSE server, e.g. 4)</li>
+<li><code>&lt;freq&gt;</code>: The centre frequency in MHz (e.g. 1284)</li>
+</ul>
+<h2 id="processed-fold-mode-data">Processed fold mode data</h2>
+<p>The processed fold mode data is generated with <a href="/meerkat_pulsar_docs/meerpipe/">MeerPipe</a> using the raw fold mode data and is stored in the following directory:</p>
+<pre><code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;
+</code></pre>
+<p>This directory will contain a <code>results.json</code> file which are outputs of <a href="/meerkat_pulsar_docs/meerpipe/">MeerPipe</a> calculations
+and either a cleaned/zapped (<code>&lt;pulsar&gt;_&lt;utc&gt;_zap.ar</code>) or raw (<code>&lt;pulsar&gt;_&lt;utc&gt;_raw.ar</code>) file if no template is available (templates are required for cleaning with <a href="https://github.com/danielreardon/MeerGuard">MeerGuard</a>).
+If there is only a raw file you can either manually clean it with
+<a href="https://ozgrav.github.io/2023-09-25_NWU_Pulsar_Timing_Workshop/PulsarData/index.html#pazi">paz</a>
+or <a href="https://ozgrav.github.io/2023-09-25_NWU_Pulsar_Timing_Workshop/PulsarData/index.html#paz">pazi</a>
+or add a template to the <a href="/meerkat_pulsar_docs/ephem_template/#development-add-or-update-ephemerides-and-templates">ephemeris and template repo</a> so that the <a href="/meerkat_pulsar_docs/meerpipe/">MeerPipe</a> pipeline can clean it and create the following outputs.</p>
+<p>This directory also contains the following subdirectories that will be explained in the following subsections:</p>
+<ul>
+<li><a href="/meerkat_pulsar_docs/ozstar_storage/#images"><code>images</code></a></li>
+<li><a href="/meerkat_pulsar_docs/ozstar_storage/#decimated"><code>decimated</code></a></li>
+<li><a href="/meerkat_pulsar_docs/ozstar_storage/#timing"><code>timing</code></a></li>
+<li><a href="/meerkat_pulsar_docs/ozstar_storage/#scintillation"><code>scintillation</code></a></li>
+</ul>
+<h3 id="images">Images</h3>
+<p>The images directory (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/images/</code>) contains all the images that will be uploaded to the <a href="https://pulsars.org.au/">MeerTime data portal</a>.
+Each image will either start with <code>cleaned</code> or <code>raw</code> depending on whether the image was created from a cleaned/zapped or raw archive respectively.
+The images names and descriptions are listed below in the same order they appear on the data portal:</p>
+<ul>
+<li><code>{cleaned/raw}_profile_ftp.png</code>: The polarisation pulse profile.</li>
+<li><code>{cleaned/raw}_profile_fts.png</code>: The pulse profile.</li>
+<li><code>{cleaned/raw}_phase_time.png</code>: The phase vs. time plot.</li>
+<li><code>{cleaned/raw}_phase_freq.png</code>: The phase vs. frequency plot.</li>
+<li><code>{cleaned/raw}_bandpass.png</code>: The bandpass plot which shows the frequency response and which channels were flagged.</li>
+<li><code>{cleaned/raw}_SNR_cumulative.png</code>: The cumulative signal-to-noise ratio plot which shows how the SNR increases with time.</li>
+<li><code>{cleaned/raw}_SNR_single.png</code>: The single subint signal-to-noise ratio plot which shows the SNR at each subint.</li>
+</ul>
+<h3 id="decimated">Decimated</h3>
+<p>The decimated directory (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/</code>) contains the decimated archives that are used for the timing analysis for all projects.
+The decimated archives have the following naming convention:</p>
+<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_zap&lt;_chopped&gt;.&lt;nchan&gt;ch&lt;npol&gt;p&lt;nsub&gt;t.ar
+</code></pre>
+<p>where <code>&lt;_chopped&gt;</code> is included in the file name if the edge frequency channels are removed,
+<code>&lt;nchan&gt;</code> is the number of frequency channels,
+<code>&lt;npol&gt;</code> is the number of polarisations and
+<code>&lt;nsub&gt;</code> is the number of time subintegrations.</p>
+<p>For example <code>J0855-3331_2020-07-11-11:08:23_zap_chopped.16ch1p1t.ar</code> is a decimated archive with the edge channels removed, 16 frequency channels, 1 polarisation and 1 subintegration.</p>
+<h3 id="timing">Timing</h3>
+<p>The timing directory contains subdirectories for each project (e.g PTA) (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/&lt;project&gt;/</code>).
+In each of these project timing subdirectories there is a ephemeris file (<code>&lt;pulsar&gt;.par</code>) and a template file (<code>&lt;pulsar&gt;.std</code>) which are used to make a time of arrival (ToA) <code>.tim</code> files.
+The ToA files have the following format:</p>
+<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_zap&lt;_chopped&gt;.&lt;nchan&gt;ch&lt;npol&gt;p&lt;nsub&gt;t.tim
+</code></pre>
+<p>where, as above, <code>&lt;_chopped&gt;</code> is included in the file name if the edge frequency channels are removed,
+<code>&lt;nchan&gt;</code> is the number of frequency channels,
+<code>&lt;npol&gt;</code> is the number of polarisations and
+<code>&lt;nsub&gt;</code> is the number of time subintegrations.</p>
+<p>The ToAs can manually be combined into a single <code>.tim</code> file or more easily downloaded using <code>psrdb toa download</code>, see the <a href="https://psrdb.readthedocs.io/en/latest/how_to_use.html#toa-download-example">psrd docs</a> for examples of how to do so.</p>
+<h3 id="scintillation">Scintillation</h3>
+<p>The scintillation directory (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/scintillation/</code>) contains files used for scintillation analysis.
+The <code>.dynspec</code> data files are generated with the <code>psrflux</code> psrchive script and have the following naming convention:</p>
+<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_{raw,zap}.ar.dynspec
+</code></pre>
+<p>Where <code>raw</code> is for the raw archives and <code>zap</code> is for the cleaned/zapped archives.</p>
+<p>There are also png files which are created with the <a href="https://github.com/danielreardon/scintools">scintools</a> repository and have the following naming convention:</p>
+<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_{raw,zap}.ar.dynspec.png
+</code></pre>
+<h2 id="raw-fold-mode-data">Raw fold mode data</h2>
+<p>The raw fold mode data is stored in the following directory:</p>
+<pre><code>/fred/oz005/timing/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/&lt;freq&gt;
+</code></pre>
+<p>Which contains:</p>
+<ul>
+<li><code>*.ar</code>: The raw fold mode archives in ~8 second sub-integrations.</li>
+<li><code>obs.header</code>: The metadata file output by the PTUSE.</li>
+<li><code>meertime.json</code>: The metadata file in the format required by the MeerTime data portal which was created by <code>psrdb</code>.</li>
+<li><code>obs.finished</code>: Empty file that is used to indicate the observation has finished transferring to OzSTAR.</li>
+</ul>
+<h2 id="raw-search-mode-data">Raw search mode data</h2>
+<p>The raw search mode data is stored in the following directory:</p>
+<pre><code>/fred/oz005/search/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/&lt;freq&gt;
+</code></pre>
+<p>Which contains:</p>
+<ul>
+<li><code>*.sf</code>: The raw search mode archives in ~8 second sub-integrations.</li>
+<li><code>obs.header</code>: The metadata file output by the PTUSE.</li>
+<li><code>meertime.json</code>: The metadata file in the format required by the MeerTime data portal which was created by <code>psrdb</code>.</li>
+<li><code>obs.finished</code>: Empty file that is used to indicate the observation has finished transferring to OzSTAR.</li>
+<li><code>transfer.list</code>: List of files that have been transferred to OzSTAR.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../meerpipe/" class="btn btn-neutral float-left" title="MeerPipe"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ephem_template/" class="btn btn-neutral float-right" title="MeerTime Ephemerides and Templates">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../meerpipe/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ephem_template/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

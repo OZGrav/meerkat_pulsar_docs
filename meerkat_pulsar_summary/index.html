@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://example.com/meerkat_pulsar_summary/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ozgrav.github.io/meerkat_pulsar_docs/meerkat_pulsar_summary/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
     <title>MeerKAT Pulsar Processing Summary - Pulsar Processing: MeerKAT documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
@@ -14,7 +14,7 @@
         // Current page data
         var mkdocs_page_name = "MeerKAT Pulsar Processing Summary";
         var mkdocs_page_input_path = "meerkat_pulsar_summary.md";
-        var mkdocs_page_url = "/meerkat_pulsar_summary/";
+        var mkdocs_page_url = "/meerkat_pulsar_docs/meerkat_pulsar_summary/";
       </script>
     
     <!--[if lt IE 9]>
@@ -58,7 +58,23 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">MeerKAT Pulsar Processing Summary</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#observed-with-meerkat">Observed with MeerKAT</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#preprocessed-with-the-ptuse">Preprocessed with the PTUSE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#meerpipe">MeerPipe</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#transferred-to-ozstar">Transferred to OzSTAR</a>
+    </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../meerpipe/">MeerPipe</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ozstar_storage/">OzSTAR storage</a>
                 </li>
               </ul>
               <ul>
@@ -89,7 +105,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="meerkat-pulsar-processing-summary">MeerKAT Pulsar Processing Summary</h1>
-<p>The following is a high level summary of how we turn radio waves into processed pulsar data displayed on the <a href="pulsars.org.au">MeerTime Data Portal</a>.
+<p>The following is a high level summary of how we turn radio waves into processed pulsar data displayed on the <a href="https://pulsars.org.au">MeerTime Data Portal</a>.
 This summary will include links to the other parts of this documentation and other resources that go into more detail of each aspect of the process.
 Many of these subsections will have one of the following labels to help you find the information you desire quicker:</p>
 <ul>
@@ -102,17 +118,38 @@ Many of these subsections will have one of the following labels to help you find
 <li>Observed with MeerKAT</li>
 <li>Preprocessed with the PTUSE</li>
 <li>Transferred to OzSTAR</li>
-<li>Observation metadata uploaded to <a href="pulsars.org.au">MeerTime Data Portal</a></li>
+<li>Observation metadata uploaded to <a href="https://pulsars.org.au">MeerTime Data Portal</a></li>
 <li>Data processed using MeerPipe</li>
-<li>Observation results uploaded to <a href="pulsars.org.au">MeerTime Data Portal</a></li>
+<li>Observation results uploaded to <a href="https://pulsars.org.au">MeerTime Data Portal</a></li>
 </ul>
 <p><img alt="meerkat_high_level" src="../figures/meerkat_high_level.png" /></p>
+<p>The following documentation will go into more detail of each of these steps.</p>
+<h2 id="observed-with-meerkat">Observed with MeerKAT</h2>
+<p>The MeerKAT telescope is described in detail in the <a href="https://public.ska.ac.za/meerkat/meerkat-user-guide/">MeerKAT User Guide (user, science)</a> and the the following papers (science):</p>
+<ul>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2009IEEEP..97.1522J/abstract">MeerKAT - The South African Array With Composite Dishes and Wide-Band Single Pixel Feeds</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2016mks..confE...1J/abstract">The MeerKAT Radio Telescope</a></li>
+<li><a href="https://ui.adsabs.harvard.edu/abs/2020PASA...37...28B/abstract">The MeerKAT telescope as a pulsar facility: System verification and early science results from MeerTime</a></li>
+</ul>
+<p>Some of the methods and software used with MeerKAT are described in the <a href="https://katgpucbf.readthedocs.io/en/latest/index.html">engineering documentation (science, dev)</a>.</p>
+<p>The MeerKat archive and other observing tools can be found in the <a href="https://apps.sarao.ac.za/">SARAO apps web page (user)</a></p>
+<h2 id="preprocessed-with-the-ptuse">Preprocessed with the PTUSE</h2>
+<p>The PTUSE is described in detail in <a href="https://ui.adsabs.harvard.edu/abs/2020PASA...37...28B/abstract">The MeerKAT telescope as a pulsar facility: System verification and early science results from MeerTime</a>.
+The PTUSE comprises of four servers (each server represents the beam ID in the observation metadata) which can be used to dedisperse and fold the data in real time.
+The PTUSE outputs archives in eight second sub-integrations which may have some timing smear in them due to the initial inaccurate ephemeris used during the observation.
+If you ever want to inspect the ephemeris used to create an archive file you can use the following command:</p>
+<pre><code>vap -E &lt;archive_file&gt;
+</code></pre>
+<h2 id="meerpipe">MeerPipe</h2>
+<p>MeerPipe is the Nextflow pipeline used to process MeerKAT pulsar data. It is described in detail in the <a href="">MeerPipe documentation (user, science, dev)</a></p>
+<h2 id="transferred-to-ozstar">Transferred to OzSTAR</h2>
+<p>The description of where the data is stored on OzSTAR can be found in the <a href="/meerkat_pulsar_docs/ozstar_storage/">OzSTAR Storage (user)</a>.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../command_examples/" class="btn btn-neutral float-left" title="Command examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../ephem_template/" class="btn btn-neutral float-right" title="MeerTime Ephemerides and Templates">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../meerpipe/" class="btn btn-neutral float-right" title="MeerPipe">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -138,7 +175,7 @@ Many of these subsections will have one of the following labels to help you find
       <span><a href="../command_examples/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../ephem_template/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../meerpipe/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
