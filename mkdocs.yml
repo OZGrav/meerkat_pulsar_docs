@@ -1,5 +1,5 @@
 site_name: "Pulsar Processing: MeerKAT documentation"
-site_url: https://example.com/
+site_url: https://ozgrav.github.io/meerkat_pulsar_docs/
 theme: readthedocs
 nav:
     - Home: index.md
@@ -7,4 +7,6 @@ nav:
     - Software Installation: software_installation.md
     - Command examples: command_examples.md
     - MeerKAT Pulsar Processing Summary: meerkat_pulsar_summary.md
+    - MeerPipe: meerpipe.md
+    - OzSTAR storage: ozstar_storage.md
     - MeerTime Ephemerides and Templates: ephem_template.md
