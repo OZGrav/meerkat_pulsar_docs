@@ -71,6 +71,10 @@
     <li class="toctree-l3"><a class="reference internal" href="#images">Images</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#decimated">Decimated</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#nsub-types">Nsub types</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#timing">Timing</a>
     </li>
@@ -154,22 +158,46 @@ The images names and descriptions are listed below in the same order they appear
 <h3 id="decimated">Decimated</h3>
 <p>The decimated directory (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/</code>) contains the decimated archives that are used for the timing analysis for all projects.
 The decimated archives have the following naming convention:</p>
-<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_zap&lt;_chopped&gt;.&lt;nchan&gt;ch&lt;npol&gt;p&lt;nsub&gt;t.ar
+<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_{zap/raw}&lt;_chopped&gt;.&lt;nchan&gt;ch_&lt;npol&gt;p_&lt;nsub_type&gt;_&lt;nsub&gt;t.ar
 </code></pre>
-<p>where <code>&lt;_chopped&gt;</code> is included in the file name if the edge frequency channels are removed,
+<p>where <code>{zap/raw}</code> represents if the archive was cleaned or not,
+<code>&lt;_chopped&gt;</code> is included in the file name if the edge frequency channels are removed,
 <code>&lt;nchan&gt;</code> is the number of frequency channels,
-<code>&lt;npol&gt;</code> is the number of polarisations and
+<code>&lt;npol&gt;</code> is the number of polarisations,
+<code>&lt;nsub_type&gt;</code> is the method used to calculate the number of subintegrations (see <a href="#nsub-types">next section</a>), and
 <code>&lt;nsub&gt;</code> is the number of time subintegrations.</p>
-<p>For example <code>J0855-3331_2020-07-11-11:08:23_zap_chopped.16ch1p1t.ar</code> is a decimated archive with the edge channels removed, 16 frequency channels, 1 polarisation and 1 subintegration.</p>
+<p>The following are examples of the decimated file names:</p>
+<ul>
+<li><code>J1744-1134_2019-10-05-11:17:35_zap_chopped.16ch_1p_1t.ar</code> is a decimated cleaned archive with the edge channels removed, 16 frequency channels, 1 polarisation and 1 subintegration. Note that the <code>1</code> nsub type observations don't have both their <code>&lt;nsub_type&gt;</code> and <code>&lt;nsub&gt;</code> as they are both the same.</li>
+<li><code>J1744-1134_2019-10-05-11:17:35_zap_chopped.1ch_4p_all_32t.ar</code> is a decimated cleaned archive with the edge channels removed, 1 frequency channel (frequency scrunched), full Stokes polarisations and all subintegrations (not time scrunched) which is 32 for this observation.</li>
+<li><code>J1744-1134_2019-10-05-11:17:35_raw_chopped.928ch_4p_mode_1t.ar</code> is a decimated RAW archive with the edge channels removed, 928 frequency channels, full Stokes polarisations and mode subintegrations which is 1 for this observation. Note this is a raw archive so caution should be used when using it for sensitive science.</li>
+</ul>
+<h4 id="nsub-types">Nsub types</h4>
+<p>There are currently four methods of how to calculate how many time subintegrations to use for an observations which are listed below.</p>
+<ul>
+<li>"1": a single nsub (time scrunched)</li>
+<li>"all": all available nsubs (no time scrunching), only done for single nchan decimations (frequency scrunched)</li>
+<li>"max" the maximum number of subints possible for the observation based on the S/N ratio.
+The maximum is calculated using the <code>meerpipe</code> script <a href="https://github.com/OZGrav/meerpipe/blob/main/meerpipe/scripts/calc_max_nsub.py"><code>calc_max_nsub</code></a> which uses the logic:
+$$
+nsub = \left ( \frac{S/N}{S/N_D} \right )^2 \frac{1}{nchan}
+$$
+where <span class="arithmatex">\(S/N\)</span> is the signal-to-noise ration of the observation,
+<span class="arithmatex">\(S/N_D\)</span> is the desired signal-to-noise ratio of ToA (12 by default) and
+<span class="arithmatex">\(nchan\)</span> is the number of frequency channels for this decimation.</li>
+<li>"mode" the length of each subintegration is equal to the most common observation duration.
+This value is calculated as part of the <a href="https://gitlab.com/CAS-eResearch/GWDC/meertime_dataportal/-/blob/main/backend/dataportal/graphql/queries.py?ref_type=heads#L338">webportal query</a> which rounds all values to the nearest 32 seconds and finds the most common duration, prioritising short observations in the case of a draw.</li>
+</ul>
 <h3 id="timing">Timing</h3>
 <p>The timing directory contains subdirectories for each project (e.g PTA) (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/&lt;project&gt;/</code>).
 In each of these project timing subdirectories there is a ephemeris file (<code>&lt;pulsar&gt;.par</code>) and a template file (<code>&lt;pulsar&gt;.std</code>) which are used to make a time of arrival (ToA) <code>.tim</code> files.
 The ToA files have the following format:</p>
-<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_zap&lt;_chopped&gt;.&lt;nchan&gt;ch&lt;npol&gt;p&lt;nsub&gt;t.tim
+<pre><code>&lt;pulsar&gt;_&lt;utc&gt;_zap&lt;_chopped&gt;.&lt;nchan&gt;ch_&lt;npol&gt;p_&lt;nsub_type&gt;_&lt;nsub&gt;.tim
 </code></pre>
 <p>where, as above, <code>&lt;_chopped&gt;</code> is included in the file name if the edge frequency channels are removed,
 <code>&lt;nchan&gt;</code> is the number of frequency channels,
-<code>&lt;npol&gt;</code> is the number of polarisations and
+<code>&lt;npol&gt;</code> is the number of polarisations,
+<code>&lt;nsub_type&gt;</code> is the method used to calculate the number of subintegrations (see <a href="#nsub-types">previous section</a>), and
 <code>&lt;nsub&gt;</code> is the number of time subintegrations.</p>
 <p>The ToAs can manually be combined into a single <code>.tim</code> file or more easily downloaded using <code>psrdb toa download</code>, see the <a href="https://psrdb.readthedocs.io/en/latest/how_to_use.html#toa-download-example">psrd docs</a> for examples of how to do so.</p>
 <h3 id="scintillation">Scintillation</h3>
@@ -243,6 +271,9 @@ The <code>.dynspec</code> data files are generated with the <code>psrflux</code>
     <script>var base_url = "..";</script>
     <script src="../js/theme_extra.js"></script>
     <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       <script src="../search/main.js"></script>
     <script>
         jQuery(function () {

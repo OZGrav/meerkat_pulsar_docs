@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/command_examples/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/ephem_template/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/meerkat_pulsar_summary/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/meerpipe/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/ozstar/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/ozstar_storage/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://ozgrav.github.io/meerkat_pulsar_docs/software_installation/</loc>
-         <lastmod>2023-12-21</lastmod>
+         <lastmod>2024-04-18</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
