@@ -78,14 +78,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ephemeris-creation-methods">Ephemeris Creation Methods</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#atnf">ATNF</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#template-creation-methods">Template Creation Methods</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -138,20 +130,20 @@ The central place will also make it easier for researchers in charge of rerunnin
 │   │   ├── grab_template.py
 │   │   └── __init__.py
 │   ├── ephemeris
-│   │   ├── default
-│   │   │   ├── J0437-4715_ATNFv1.70.par
+│   │   ├── PTUSE
+│   │   │   ├── J0437-4715.par
 │   │   │   └── ...
 │   │   └── TPA
-│   │       ├── J0437-4715_ATNFv1.69.par
+│   │       ├── J0437-4715.par
 │   │       └── ...
 │   └── template
 │       ├── LBAND
-│       │   └── default
-│       │       ├── J0437-4715_empty.std
+│       │   └── TPA
+│       │       ├── J0437-4715.std
 │       │       └── ...
 │       └── UHF
-│           └── default
-│               ├── J0437-4715_empty.std
+│           └── TPA
+│               ├── J0437-4715.std
 │               └── ...
 ├── dev_scripts
 │   └── create_ephemeris.sh
@@ -160,30 +152,12 @@ The central place will also make it easier for researchers in charge of rerunnin
 </code></pre>
 <p>The <code>ephem_template/ephemeris</code> directory contains the timing ephemerides split into project subdirectories</p>
 <p>The <code>ephem_template/template</code> directory contains the standard templates split into observing band subdirectories then project subdirectories</p>
-<p>The <code>default</code> project is not for a specific project and is designed to be collaborative ephemerides and templates that do not have specific goals.
-Only when multiple projects start to refine ephemerides and templates for differing goals should they use different project directories.</p>
+<p>The <code>PTUSE</code> project is not for a specific project and often has folding ephemerides taken from the raw archives with the <code>vap -E</code> command.</p>
 <p>The python scripts in <code>ephem_template</code> are simple scripts to decide which ephemeris or template to return based on the input pulsar name, project and observing band.</p>
 <p>The bash scripts in <code>dev_scripts</code> create or rename ephemerides and templates in a consistent way then put them into the correct directory to make development easier and more consistent.</p>
 <h2 id="development-add-or-update-ephemerides-and-templates">Development (add or update ephemerides and templates)</h2>
 <p>To access the repository you must request to become a member of the GitHub team <a href="https://github.com/orgs/OZGrav/teams/meerkat-pulsar-timing">Meerkat Pulsar Timing</a> by emailing Matthew Bailes or Nicholas Swainston.</p>
-<p>pull request add old authors of files as reviewers if you are replacing or changing files they created</p>
-<h2 id="ephemeris-creation-methods">Ephemeris Creation Methods</h2>
-<p>The <code>dev_scripts/create_ephemeris.sh</code> is used to create ephemerides and has the following options:</p>
-<pre><code class="language-sh">Usage: dev_scripts/create_ephemeris.sh [-h] [-p project] [-m method] pulsar
- -h Display this help message
- -p Project (PTA, TPA, RelBin and GC) (default: default)
- -m Method to create ephem (atnf, ) (default: atnf)
-</code></pre>
-<p>The project option will define which subdirectory the ephemeris is put into.
-The following subsections will describe the methods</p>
-<h3 id="atnf">ATNF</h3>
-<p>This method will create an ephemeris based on the ATNF pulsar catalogue with the following command:</p>
-<pre><code class="language-sh">cat_version=$(psrcat -v | tail -n 1  | cut -d ' ' -f 5)
-psrcat -e ${pulsar} &gt; ${base_path}/ephemeris/${project}/${pulsar}_ATNFv${cat_version}.par
-</code></pre>
-<p>Which will make a file that describes which ATNF catalogue version was used to create it.
-For example <code>J0437-4715_ATNFv1.70.par</code>.</p>
-<h2 id="template-creation-methods">Template Creation Methods</h2>
+<p>How to update the OzSTAR module is described in the repositories <a href="https://github.com/OZGrav/meertime_ephemerides_and_templates/blob/main/README.md">README.md</a></p>
               
             </div>
           </div><footer>
