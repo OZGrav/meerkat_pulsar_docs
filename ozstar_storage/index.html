@@ -64,7 +64,7 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">OzSTAR storage</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">OzSTAR storage</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#processed-fold-mode-data">Processed fold mode data</a>
         <ul>
@@ -184,7 +184,8 @@ nsub = \left ( \frac{S/N}{S/N_D} \right )^2 \frac{1}{nchan}
 $$
 where <span class="arithmatex">\(S/N\)</span> is the signal-to-noise ration of the observation,
 <span class="arithmatex">\(S/N_D\)</span> is the desired signal-to-noise ratio of ToA (12 by default) and
-<span class="arithmatex">\(nchan\)</span> is the number of frequency channels for this decimation.</li>
+<span class="arithmatex">\(nchan\)</span> is the number of frequency channels for this decimation.
+The minimum length of each of these sub-integrations must be 480 seconds (to prevent a huge number of ToAs).</li>
 <li>"mode" the length of each subintegration is equal to the most common observation duration.
 This value is calculated as part of the <a href="https://gitlab.com/CAS-eResearch/GWDC/meertime_dataportal/-/blob/main/backend/dataportal/graphql/queries.py?ref_type=heads#L338">webportal query</a> which rounds all values to the nearest 32 seconds and finds the most common duration, prioritising short observations in the case of a draw.</li>
 </ul>
