@@ -85,6 +85,7 @@ $$
 where $S/N$ is the signal-to-noise ration of the observation,
 $S/N_D$ is the desired signal-to-noise ratio of ToA (12 by default) and
 $nchan$ is the number of frequency channels for this decimation.
+The minimum length of each of these sub-integrations must be 480 seconds (to prevent a huge number of ToAs).
 - "mode" the length of each subintegration is equal to the most common observation duration.
 This value is calculated as part of the [webportal query](https://gitlab.com/CAS-eResearch/GWDC/meertime_dataportal/-/blob/main/backend/dataportal/graphql/queries.py?ref_type=heads#L338) which rounds all values to the nearest 32 seconds and finds the most common duration, prioritising short observations in the case of a draw.
 
