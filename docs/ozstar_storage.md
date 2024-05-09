@@ -15,7 +15,7 @@ The following are used to describe the directory structure:
 The processed fold mode data is generated with [MeerPipe](/meerkat_pulsar_docs/meerpipe/) using the raw fold mode data and is stored in the following directory:
 
 ```
-/fred/oz005/users/nswainst/meerpipe_testing_outputs/<pulsar>/<utc>/<beam>
+/fred/oz005/timing_processed/<pulsar>/<utc>/<beam>
 ```
 
 This directory will contain a `results.json` file which are outputs of [MeerPipe](/meerkat_pulsar_docs/meerpipe/) calculations
@@ -35,7 +35,7 @@ This directory also contains the following subdirectories that will be explained
 
 ### Images
 
-The images directory (`/fred/oz005/users/nswainst/meerpipe_testing_outputs/<pulsar>/<utc>/<beam>/images/`) contains all the images that will be uploaded to the [MeerTime data portal](https://pulsars.org.au/).
+The images directory (`/fred/oz005/timing_processed/<pulsar>/<utc>/<beam>/images/`) contains all the images that will be uploaded to the [MeerTime data portal](https://pulsars.org.au/).
 Each image will either start with `cleaned` or `raw` depending on whether the image was created from a cleaned/zapped or raw archive respectively.
 The images names and descriptions are listed below in the same order they appear on the data portal:
 
@@ -46,11 +46,12 @@ The images names and descriptions are listed below in the same order they appear
  - `{cleaned/raw}_bandpass.png`: The bandpass plot which shows the frequency response and which channels were flagged.
  - `{cleaned/raw}_SNR_cumulative.png`: The cumulative signal-to-noise ratio plot which shows how the SNR increases with time.
  - `{cleaned/raw}_SNR_single.png`: The single subint signal-to-noise ratio plot which shows the SNR at each subint.
+ - `cleaned_rmfit.png`: The result of the `rmfit` command for checking the quality of the RM measurement.
 
 
 ### Decimated
 
-The decimated directory (`/fred/oz005/users/nswainst/meerpipe_testing_outputs/<pulsar>/<utc>/<beam>/decimated/`) contains the decimated archives that are used for the timing analysis for all projects.
+The decimated directory (`/fred/oz005/timing_processed/<pulsar>/<utc>/<beam>/decimated/`) contains the decimated archives that are used for the timing analysis for all projects.
 The decimated archives have the following naming convention:
 
 ```
@@ -92,7 +93,7 @@ This value is calculated as part of the [webportal query](https://gitlab.com/CAS
 
 ### Timing
 
-The timing directory contains subdirectories for each project (e.g PTA) (`/fred/oz005/users/nswainst/meerpipe_testing_outputs/<pulsar>/<utc>/<beam>/decimated/<project>/`).
+The timing directory contains subdirectories for each project (e.g PTA) (`/fred/oz005/timing_processed/<pulsar>/<utc>/<beam>/decimated/<project>/`).
 In each of these project timing subdirectories there is a ephemeris file (`<pulsar>.par`) and a template file (`<pulsar>.std`) which are used to make a time of arrival (ToA) `.tim` files.
 The ToA files have the following format:
 
@@ -111,7 +112,7 @@ The ToAs can manually be combined into a single `.tim` file or more easily downl
 
 ### Scintillation
 
-The scintillation directory (`/fred/oz005/users/nswainst/meerpipe_testing_outputs/<pulsar>/<utc>/<beam>/scintillation/`) contains files used for scintillation analysis.
+The scintillation directory (`/fred/oz005/timing_processed/<pulsar>/<utc>/<beam>/scintillation/`) contains files used for scintillation analysis.
 The `.dynspec` data files are generated with the `psrflux` psrchive script and have the following naming convention:
 
 ```
