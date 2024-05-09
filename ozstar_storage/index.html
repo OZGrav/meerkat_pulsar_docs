@@ -127,7 +127,7 @@
 </ul>
 <h2 id="processed-fold-mode-data">Processed fold mode data</h2>
 <p>The processed fold mode data is generated with <a href="/meerkat_pulsar_docs/meerpipe/">MeerPipe</a> using the raw fold mode data and is stored in the following directory:</p>
-<pre><code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;
+<pre><code>/fred/oz005/timing_processed/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;
 </code></pre>
 <p>This directory will contain a <code>results.json</code> file which are outputs of <a href="/meerkat_pulsar_docs/meerpipe/">MeerPipe</a> calculations
 and either a cleaned/zapped (<code>&lt;pulsar&gt;_&lt;utc&gt;_zap.ar</code>) or raw (<code>&lt;pulsar&gt;_&lt;utc&gt;_raw.ar</code>) file if no template is available (templates are required for cleaning with <a href="https://github.com/danielreardon/MeerGuard">MeerGuard</a>).
@@ -143,7 +143,7 @@ or add a template to the <a href="/meerkat_pulsar_docs/ephem_template/#developme
 <li><a href="/meerkat_pulsar_docs/ozstar_storage/#scintillation"><code>scintillation</code></a></li>
 </ul>
 <h3 id="images">Images</h3>
-<p>The images directory (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/images/</code>) contains all the images that will be uploaded to the <a href="https://pulsars.org.au/">MeerTime data portal</a>.
+<p>The images directory (<code>/fred/oz005/timing_processed/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/images/</code>) contains all the images that will be uploaded to the <a href="https://pulsars.org.au/">MeerTime data portal</a>.
 Each image will either start with <code>cleaned</code> or <code>raw</code> depending on whether the image was created from a cleaned/zapped or raw archive respectively.
 The images names and descriptions are listed below in the same order they appear on the data portal:</p>
 <ul>
@@ -154,9 +154,10 @@ The images names and descriptions are listed below in the same order they appear
 <li><code>{cleaned/raw}_bandpass.png</code>: The bandpass plot which shows the frequency response and which channels were flagged.</li>
 <li><code>{cleaned/raw}_SNR_cumulative.png</code>: The cumulative signal-to-noise ratio plot which shows how the SNR increases with time.</li>
 <li><code>{cleaned/raw}_SNR_single.png</code>: The single subint signal-to-noise ratio plot which shows the SNR at each subint.</li>
+<li><code>cleaned_rmfit.png</code>: The result of the <code>rmfit</code> command for checking the quality of the RM measurement.</li>
 </ul>
 <h3 id="decimated">Decimated</h3>
-<p>The decimated directory (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/</code>) contains the decimated archives that are used for the timing analysis for all projects.
+<p>The decimated directory (<code>/fred/oz005/timing_processed/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/</code>) contains the decimated archives that are used for the timing analysis for all projects.
 The decimated archives have the following naming convention:</p>
 <pre><code>&lt;pulsar&gt;_&lt;utc&gt;_{zap/raw}&lt;_chopped&gt;.&lt;nchan&gt;ch_&lt;npol&gt;p_&lt;nsub_type&gt;_&lt;nsub&gt;t.ar
 </code></pre>
@@ -190,7 +191,7 @@ The minimum length of each of these sub-integrations must be 480 seconds (to pre
 This value is calculated as part of the <a href="https://gitlab.com/CAS-eResearch/GWDC/meertime_dataportal/-/blob/main/backend/dataportal/graphql/queries.py?ref_type=heads#L338">webportal query</a> which rounds all values to the nearest 32 seconds and finds the most common duration, prioritising short observations in the case of a draw.</li>
 </ul>
 <h3 id="timing">Timing</h3>
-<p>The timing directory contains subdirectories for each project (e.g PTA) (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/&lt;project&gt;/</code>).
+<p>The timing directory contains subdirectories for each project (e.g PTA) (<code>/fred/oz005/timing_processed/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/decimated/&lt;project&gt;/</code>).
 In each of these project timing subdirectories there is a ephemeris file (<code>&lt;pulsar&gt;.par</code>) and a template file (<code>&lt;pulsar&gt;.std</code>) which are used to make a time of arrival (ToA) <code>.tim</code> files.
 The ToA files have the following format:</p>
 <pre><code>&lt;pulsar&gt;_&lt;utc&gt;_zap&lt;_chopped&gt;.&lt;nchan&gt;ch_&lt;npol&gt;p_&lt;nsub_type&gt;_&lt;nsub&gt;.tim
@@ -202,7 +203,7 @@ The ToA files have the following format:</p>
 <code>&lt;nsub&gt;</code> is the number of time subintegrations.</p>
 <p>The ToAs can manually be combined into a single <code>.tim</code> file or more easily downloaded using <code>psrdb toa download</code>, see the <a href="https://psrdb.readthedocs.io/en/latest/how_to_use.html#toa-download-example">psrd docs</a> for examples of how to do so.</p>
 <h3 id="scintillation">Scintillation</h3>
-<p>The scintillation directory (<code>/fred/oz005/users/nswainst/meerpipe_testing_outputs/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/scintillation/</code>) contains files used for scintillation analysis.
+<p>The scintillation directory (<code>/fred/oz005/timing_processed/&lt;pulsar&gt;/&lt;utc&gt;/&lt;beam&gt;/scintillation/</code>) contains files used for scintillation analysis.
 The <code>.dynspec</code> data files are generated with the <code>psrflux</code> psrchive script and have the following naming convention:</p>
 <pre><code>&lt;pulsar&gt;_&lt;utc&gt;_{raw,zap}.ar.dynspec
 </code></pre>
