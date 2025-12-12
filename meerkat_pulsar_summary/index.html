@@ -64,6 +64,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#meerpipe">MeerPipe</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#search-mode-pipeline">Search mode pipeline</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#transferred-to-ozstar">Transferred to OzSTAR</a>
     </li>
     </ul>
@@ -105,7 +107,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="meerkat-pulsar-processing-summary">MeerKAT Pulsar Processing Summary</h1>
-<p>The following is a high level summary of how we turn radio waves into processed pulsar data displayed on the <a href="https://pulsars.org.au">MeerTime Data Portal</a>.
+<p>The following is a high level summary of how we turn radio waves into processed pulsar data displayed on the <a href="https://pulsars.org.au">Pulsar Portal</a>.
 This summary will include links to the other parts of this documentation and other resources that go into more detail of each aspect of the process.
 Many of these subsections will have one of the following labels to help you find the information you desire quicker:</p>
 <ul>
@@ -118,11 +120,12 @@ Many of these subsections will have one of the following labels to help you find
 <li>Observed with MeerKAT</li>
 <li>Preprocessed with the PTUSE</li>
 <li>Transferred to OzSTAR</li>
-<li>Observation metadata uploaded to <a href="https://pulsars.org.au">MeerTime Data Portal</a></li>
-<li>Data processed using MeerPipe</li>
-<li>Observation results uploaded to <a href="https://pulsars.org.au">MeerTime Data Portal</a></li>
+<li>Observation metadata uploaded to <a href="https://pulsars.org.au">Pulsar Portal</a></li>
+<li>Folded data processed using MeerPipe</li>
+<li>Processing results uploaded to <a href="https://pulsars.org.au">Pulsar Portal</a></li>
 </ul>
-<p><img alt="meerkat_high_level" src="figures/meerkat_high_level.png" /></p>
+<p><img alt="pulsar_folded_data_MeerKAT_Emma_Carli" src="../pulsar_folded_data_MeerKAT_Emma_Carli.png" />
+The flowchart is explained in more detail in Bailes et al. (in prep, publication 2026). Credit: Emma Carli and Asher Leslie</p>
 <p>The following documentation will go into more detail of each of these steps.</p>
 <h2 id="observed-with-meerkat">Observed with MeerKAT</h2>
 <p>The MeerKAT telescope is described in detail in the <a href="https://public.ska.ac.za/meerkat/meerkat-user-guide/">MeerKAT User Guide (user, science)</a> and the the following papers (science):</p>
@@ -136,12 +139,14 @@ Many of these subsections will have one of the following labels to help you find
 <h2 id="preprocessed-with-the-ptuse">Preprocessed with the PTUSE</h2>
 <p>The PTUSE is described in detail in <a href="https://ui.adsabs.harvard.edu/abs/2020PASA...37...28B/abstract">The MeerKAT telescope as a pulsar facility: System verification and early science results from MeerTime</a>.
 The PTUSE comprises of four servers (each server represents the beam ID in the observation metadata) which can be used to dedisperse and fold the data in real time.
-The PTUSE outputs archives in eight second sub-integrations which may have some timing smear in them due to the initial inaccurate ephemeris used during the observation.
+The PTUSE outputs (when in fold mode) archives in eight second sub-integrations which may have some timing smear in them due to the initial inaccurate ephemeris used during the observation.
 If you ever want to inspect the ephemeris used to create an archive file you can use the following command:</p>
 <pre><code>vap -E &lt;archive_file&gt;
 </code></pre>
 <h2 id="meerpipe">MeerPipe</h2>
 <p>MeerPipe is the Nextflow pipeline used to process MeerKAT pulsar data. It is described in detail in the <a href="">MeerPipe documentation (user, science, dev)</a></p>
+<h2 id="search-mode-pipeline">Search mode pipeline</h2>
+<p>Mike Keith's pipeline can produce a DM/RM corrected, 16-channel, 1024 bins-per-pulse single-pulse archive (i.e. one subint per pulse) from the search mode data (Keith et al. in prep). Only the observation information is stored on the Pulsar Portal.</p>
 <h2 id="transferred-to-ozstar">Transferred to OzSTAR</h2>
 <p>The description of where the data is stored on OzSTAR can be found in the <a href="/meerkat_pulsar_docs/ozstar_storage/">OzSTAR Storage (user)</a>.</p>
               
