@@ -1,6 +1,6 @@
 # MeerKAT Pulsar Processing Summary
 
-The following is a high level summary of how we turn radio waves into processed pulsar data displayed on the [MeerTime Data Portal](https://pulsars.org.au).
+The following is a high level summary of how we turn radio waves into processed pulsar data displayed on the [Pulsar Portal](https://pulsars.org.au).
 This summary will include links to the other parts of this documentation and other resources that go into more detail of each aspect of the process.
 Many of these subsections will have one of the following labels to help you find the information you desire quicker:
 
@@ -13,11 +13,13 @@ The high level steps are the following:
 - Observed with MeerKAT
 - Preprocessed with the PTUSE
 - Transferred to OzSTAR
-- Observation metadata uploaded to [MeerTime Data Portal](https://pulsars.org.au)
-- Data processed using MeerPipe
-- Observation results uploaded to [MeerTime Data Portal](https://pulsars.org.au)
+- Observation metadata uploaded to [Pulsar Portal](https://pulsars.org.au)
+- Folded data processed using MeerPipe
+- Processing results uploaded to [Pulsar Portal](https://pulsars.org.au)
 
-![meerkat_high_level](figures/meerkat_high_level.png)
+![pulsar_folded_data_MeerKAT_Emma_Carli](pulsar_folded_data_MeerKAT_Emma_Carli.png)
+The flowchart is explained in more detail in Bailes et al. (in prep, publication 2026). Credit: Emma Carli and Asher Leslie
+
 
 The following documentation will go into more detail of each of these steps.
 
@@ -38,7 +40,7 @@ The MeerKat archive and other observing tools can be found in the [SARAO apps we
 
 The PTUSE is described in detail in [The MeerKAT telescope as a pulsar facility: System verification and early science results from MeerTime](https://ui.adsabs.harvard.edu/abs/2020PASA...37...28B/abstract).
 The PTUSE comprises of four servers (each server represents the beam ID in the observation metadata) which can be used to dedisperse and fold the data in real time.
-The PTUSE outputs archives in eight second sub-integrations which may have some timing smear in them due to the initial inaccurate ephemeris used during the observation.
+The PTUSE outputs (when in fold mode) archives in eight second sub-integrations which may have some timing smear in them due to the initial inaccurate ephemeris used during the observation.
 If you ever want to inspect the ephemeris used to create an archive file you can use the following command:
 
 ```
@@ -48,6 +50,10 @@ vap -E <archive_file>
 ## MeerPipe
 
 MeerPipe is the Nextflow pipeline used to process MeerKAT pulsar data. It is described in detail in the [MeerPipe documentation (user, science, dev)]()
+
+## Search mode pipeline
+Mike Keith's pipeline can produce a DM/RM corrected, 16-channel, 1024 bins-per-pulse single-pulse archive (i.e. one subint per pulse) from the search mode data (Keith et al. in prep). Only the observation information is stored on the Pulsar Portal.
+
 
 ## Transferred to OzSTAR
 
